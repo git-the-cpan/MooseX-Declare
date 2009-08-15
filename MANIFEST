@@ -19,7 +19,9 @@ lib/MooseX/Declare/Syntax/Keyword/Class.pm
 lib/MooseX/Declare/Syntax/Keyword/Clean.pm
 lib/MooseX/Declare/Syntax/Keyword/Method.pm
 lib/MooseX/Declare/Syntax/Keyword/MethodModifier.pm
+lib/MooseX/Declare/Syntax/Keyword/Namespace.pm
 lib/MooseX/Declare/Syntax/Keyword/Role.pm
+lib/MooseX/Declare/Syntax/Keyword/With.pm
 lib/MooseX/Declare/Syntax/KeywordHandling.pm
 lib/MooseX/Declare/Syntax/MethodDeclaration.pm
 lib/MooseX/Declare/Syntax/MooseSetup.pm
@@ -44,8 +46,12 @@ t/lib/Foo.pm
 t/lib/Tiger.pm
 t/lib/WithMethod.pm
 t/lib/WithNewline.pm
+t/manual_namespace.t
 t/meta_should_be_signature.t
+t/method_as_default.t
+t/modifier_order.t
 t/modifiers.t
+t/modify_with_invocant.t
 t/nested_anonymous_classes.t
 t/nesting.t
 t/optional_positional.t
@@ -53,6 +59,7 @@ t/override_attribute_from_role.t
 t/recipes/basics/001_point.t
 t/recipes/basics/002_bank_account.t
 t/recipes/basics/006_augment_inner.t
+t/role_application.t
 t/with_newlines.t
 TODO
 xt/author/pod.t
