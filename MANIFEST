@@ -64,6 +64,7 @@ t/recipes/basics/002_bank_account.t
 t/recipes/basics/006_augment_inner.t
 t/role_application.t
 t/role_parameterized.t
+t/segfault_syntax_error.t
 t/with_newlines.t
 TODO
 xt/author/pod.t
