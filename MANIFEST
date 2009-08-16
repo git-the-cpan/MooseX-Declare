@@ -10,6 +10,7 @@ inc/Module/Install/WriteAll.pm
 lib/MooseX/Declare.pm
 lib/MooseX/Declare/Context.pm
 lib/MooseX/Declare/Context/Namespaced.pm
+lib/MooseX/Declare/Context/Parameterized.pm
 lib/MooseX/Declare/Context/WithOptions.pm
 lib/MooseX/Declare/StackItem.pm
 lib/MooseX/Declare/Syntax/EmptyBlockIfMissing.pm
@@ -24,6 +25,7 @@ lib/MooseX/Declare/Syntax/Keyword/Role.pm
 lib/MooseX/Declare/Syntax/Keyword/With.pm
 lib/MooseX/Declare/Syntax/KeywordHandling.pm
 lib/MooseX/Declare/Syntax/MethodDeclaration.pm
+lib/MooseX/Declare/Syntax/MethodDeclaration/Parameterized.pm
 lib/MooseX/Declare/Syntax/MooseSetup.pm
 lib/MooseX/Declare/Syntax/NamespaceHandling.pm
 lib/MooseX/Declare/Syntax/OptionHandling.pm
@@ -43,6 +45,7 @@ t/import.t
 t/inner_keywords.t
 t/lib/Affe.pm
 t/lib/Foo.pm
+t/lib/ParameterizedRole.pm
 t/lib/Tiger.pm
 t/lib/WithMethod.pm
 t/lib/WithNewline.pm
@@ -60,6 +63,7 @@ t/recipes/basics/001_point.t
 t/recipes/basics/002_bank_account.t
 t/recipes/basics/006_augment_inner.t
 t/role_application.t
+t/role_parameterized.t
 t/with_newlines.t
 TODO
 xt/author/pod.t

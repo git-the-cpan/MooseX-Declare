@@ -1,3 +1,8 @@
+0.25  Sun, 16 Aug 2009 05:31:59 +0200
+  * Don't persist the inner keywords over more than one invocation of the declarator.
+  * Pass along the current context to import_symbols_from and imported_moose_symbols.
+  * Implement parameterizable roles.
+
 0.24  Sat, 15 Aug 2009 23:48:09 +0200
   * Add repository and bugtracker to Makefile.PL (Ash Berlin).
   * Tests and doc fixes on applying multiple roles at once (Chas. J. Owens IV).
@@ -16,7 +21,7 @@
     end of the class- or role-definition anymore. The 'with'-option for the
     class and role keywords still does.
   * Add a tests for role application and method modifier ordering.
-  * Make anon classes immutabel as well (unless explicitly asked not to).
+  * Make anon classes immutable as well (unless explicitly asked not to).
   * Add a ctx method to add cleanup code that should be injected as early as
     possible.
   * Depend on recent versions of DD and MXMS to make keywords less reserved
