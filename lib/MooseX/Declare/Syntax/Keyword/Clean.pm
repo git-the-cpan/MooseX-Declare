@@ -1,4 +1,11 @@
 package MooseX::Declare::Syntax::Keyword::Clean;
+BEGIN {
+  $MooseX::Declare::Syntax::Keyword::Clean::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Syntax::Keyword::Clean::VERSION = '0.34';
+}
+# ABSTRACT: Explicit namespace cleanups
 
 use Moose;
 
@@ -6,6 +13,7 @@ use constant NAMESPACING_ROLE => 'MooseX::Declare::Syntax::NamespaceHandling';
 use Carp qw( cluck );
 
 use namespace::clean -except => 'meta';
+
 
 with qw(
     MooseX::Declare::Syntax::KeywordHandling
@@ -21,6 +29,7 @@ sub find_namespace_handler {
 
     return undef;
 }
+
 
 sub parse {
     my ($self, $ctx) = @_;
@@ -38,7 +47,13 @@ sub parse {
     );
 }
 
+
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -49,14 +64,6 @@ MooseX::Declare::Syntax::Keyword::Clean - Explicit namespace cleanups
 This keyword will inject a call to L<namespace::clean> into its current
 position.
 
-=head1 CONSUMES
-
-=over
-
-=item * L<MooseX::Declare::Syntax::KeywordHandling>
-
-=back
-
 =head1 METHODS
 
 =head2 parse
@@ -66,18 +73,114 @@ position.
 This will inject a call to L<namespace::clean> C<-except => 'meta'> into
 the code at the position of the keyword.
 
-=head1 SEE ALSO
+=head1 CONSUMES
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<MooseX::Declare::Syntax::KeywordHandling>
+L<MooseX::Declare::Syntax::KeywordHandling>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 SEE ALSO
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+L<MooseX::Declare>
+
+=item *
+
+L<MooseX::Declare::Syntax::KeywordHandling>
+
+=back
+
+=head1 AUTHORS
+
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

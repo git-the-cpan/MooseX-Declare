@@ -2,14 +2,19 @@ use strict;
 use warnings;
 
 package MooseX::Declare;
+BEGIN {
+  $MooseX::Declare::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::VERSION = '0.34';
+}
+# ABSTRACT: Declarative syntax for Moose
 
 use aliased 'MooseX::Declare::Syntax::Keyword::Class',      'ClassKeyword';
 use aliased 'MooseX::Declare::Syntax::Keyword::Role',       'RoleKeyword';
 use aliased 'MooseX::Declare::Syntax::Keyword::Namespace',  'NamespaceKeyword';
 
-use namespace::clean;
-
-our $VERSION = '0.33';
+use namespace::clean 0.11;
 
 sub import {
     my ($class, %args) = @_;
@@ -30,9 +35,14 @@ sub keywords {
     NamespaceKeyword->new(identifier => 'namespace'),
 }
 
+
+
 1;
 
 __END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -234,68 +244,122 @@ imports, have a look at the C<clean> keyword and the C<dirty> trait.
 
 =head1 SEE ALSO
 
+=over 4
+
+=item *
+
 L<Moose>
+
+=item *
 
 L<Moose::Role>
 
+=item *
+
 L<MooseX::Method::Signatures>
+
+=item *
 
 L<namespace::autoclean>
 
+=item *
+
 vim syntax: L<http://www.vim.org/scripts/script.php?script_id=2526>
+
+=item *
 
 emacs syntax: L<http://github.com/jrockway/cperl-mode>
 
+=item *
+
 Geany syntax + notes: L<http://www.cattlegrid.info/blog/2009/09/moosex-declare-geany-syntax.html>
 
-=head1 AUTHOR
+=back
 
-Florian Ragwitz E<lt>rafl@debian.orgE<gt>
-
-With contributions from:
+=head1 AUTHORS
 
 =over 4
 
-=item Ash Berlin E<lt>ash@cpan.orgE<gt>
+=item *
 
-=item Chas. J. Owens IV E<lt>chas.owens@gmail.comE<gt>
+Florian Ragwitz <rafl@debian.org>
 
-=item Chris Prather E<lt>chris@prather.orgE<gt>
+=item *
 
-=item Dave Rolsky E<lt>autarch@urth.orgE<gt>
+Ash Berlin <ash@cpan.org>
 
-=item Devin Austin E<lt>dhoss@cpan.orgE<gt>
+=item *
 
-=item Hans Dieter Pearcey E<lt>hdp@cpan.orgE<gt>
+Chas. J. Owens IV <chas.owens@gmail.com>
 
-=item Justin Hunter E<lt>justin.d.hunter@gmail.comE<gt>
+=item *
 
-=item Matt Kraai E<lt>kraai@ftbfs.orgE<gt>
+Chris Prather <chris@prather.org>
 
-=item Michele Beltrame E<lt>arthas@cpan.orgE<gt>
+=item *
 
-=item Nelo Onyiah E<lt>nelo.onyiah@gmail.comE<gt>
+Dave Rolsky <autarch@urth.org>
 
-=item nperez E<lt>nperez@cpan.orgE<gt>
+=item *
 
-=item Piers Cawley E<lt>pdcawley@bofh.org.ukE<gt>
+Devin Austin <dhoss@cpan.org>
 
-=item Rafael Kitover E<lt>rkitover@io.comE<gt>
+=item *
 
-=item Robert ’phaylon’ Sedlacek E<lt>rs@474.atE<gt>
+Hans Dieter Pearcey <hdp@cpan.org>
 
-=item Stevan Little E<lt>stevan.little@iinteractive.comE<gt>
+=item *
 
-=item Tomas Doran E<lt>bobtfish@bobtfish.netE<gt>
+Justin Hunter <justin.d.hunter@gmail.com>
 
-=item Yanick Champoux E<lt>yanick@babyl.dyndns.orgE<gt>
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
 
 =back
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2008, 2009  Florian Ragwitz
+This software is copyright (c) 2010 by Florian Ragwitz.
 
-Licensed under the same terms as perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

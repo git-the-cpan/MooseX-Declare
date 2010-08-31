@@ -2,6 +2,13 @@ use strict;
 use warnings;
 
 package MooseX::Declare::Util;
+BEGIN {
+  $MooseX::Declare::Util::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Util::VERSION = '0.34';
+}
+# ABSTRACT: Common declarative utility functions
 
 use Sub::Exporter -setup => {
     exports => [qw(
@@ -11,7 +18,10 @@ use Sub::Exporter -setup => {
     )],
 };
 
+
 my %OuterStack;
+
+
 
 sub outer_stack_push {
     my ($file, $value) = @_;
@@ -19,6 +29,7 @@ sub outer_stack_push {
     push @{ $OuterStack{ $file } }, $value;
     return $value;
 }
+
 
 sub outer_stack_pop {
     my ($file) = @_;
@@ -28,6 +39,7 @@ sub outer_stack_pop {
     return pop @{ $OuterStack{ $file } };
 }
 
+
 sub outer_stack_peek {
     my ($file) = @_;
 
@@ -36,7 +48,13 @@ sub outer_stack_peek {
     return $OuterStack{ $file }[-1];
 }
 
+
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -44,9 +62,12 @@ MooseX::Declare::Util - Common declarative utility functions
 
 =head1 DESCRIPTION
 
-This exporter collection contains the commonly used functions in L<MooseX::Declare>.
+This exporter collection contains the commonly used functions in
+L<MooseX::Declare>.
 
-=head1 EXPORTS
+All functions in this package will be exported upon request.
+
+=head1 FUNCTIONS
 
 =head2 outer_stack_push
 
@@ -69,14 +90,98 @@ it from the stack.
 
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
+
+L<MooseX::Declare>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

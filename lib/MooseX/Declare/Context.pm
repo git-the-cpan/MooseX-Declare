@@ -1,6 +1,13 @@
 package MooseX::Declare::Context;
+BEGIN {
+  $MooseX::Declare::Context::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Context::VERSION = '0.34';
+}
+# ABSTRACT: Per-keyword declaration context
 
-use Moose;
+use Moose 0.90;
 use Moose::Util::TypeConstraints;
 use Carp qw/croak/;
 
@@ -8,9 +15,11 @@ use aliased 'Devel::Declare::Context::Simple', 'DDContext';
 
 use namespace::clean -except => 'meta';
 
+
 subtype 'MooseX::Declare::BlockCodePart',
     as 'ArrayRef',
     where { @$_ > 1 and sub { grep { $_[0] eq $_ } qw( BEGIN END ) } -> ($_->[0]) };
+
 
 subtype 'MooseX::Declare::CodePart',
      as 'Str|MooseX::Declare::BlockCodePart';
@@ -31,17 +40,21 @@ has _dd_init_args => (
     required    => 1,
 );
 
+
 has provided_by => (
     is          => 'ro',
     isa         => 'ClassName',
     required    => 1,
 );
 
+
+
 has caller_file => (
     is          => 'rw',
     isa         => 'Str',
     required    => 1,
 );
+
 
 has preamble_code_parts => (
     traits    => ['Array'],
@@ -54,6 +67,7 @@ has preamble_code_parts => (
     },
 );
 
+
 has scope_code_parts => (
     traits    => ['Array'],
     is        => 'ro',
@@ -64,6 +78,7 @@ has scope_code_parts => (
         add_scope_code_parts => 'push',
     },
 );
+
 
 has cleanup_code_parts => (
     traits    => ['Array'],
@@ -77,12 +92,14 @@ has cleanup_code_parts => (
     },
 );
 
+
 has stack => (
     is          => 'rw',
     isa         => 'ArrayRef',
     default     => sub { [] },
     required    => 1,
 );
+
 
 sub inject_code_parts_here {
     my ($self, @parts) = @_;
@@ -97,6 +114,7 @@ sub inject_code_parts_here {
 
     return 1;
 }
+
 
 sub peek_next_char {
     my ($self) = @_;
@@ -117,6 +135,7 @@ sub peek_next_word {
     my $linestr = $self->get_linestr;
     return substr($linestr, $self->offset, $len);
 }
+
 
 sub inject_code_parts {
     my ($self, %args) = @_;
@@ -208,9 +227,13 @@ sub strip_word {
     return scalar $self->strip_name;
 }
 
+
 1;
 
 __END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -227,19 +250,9 @@ L<MooseX::Declare>. If handlers want to communicate with other handlers (for
 example handlers that will only be setup inside a namespace block) it must
 do this via the generated code.
 
-=head1 TYPES
-
-=head2 CodePart
-
-A part of code represented by either a C<Str> or a L</BlockCodePart>.
-
-=head2 BlockCodePart
-
-An C<ArrayRef> with at least one element that stringifies to either C<BEGIN>
-or C<END>. The other parts will be stringified and used as the body for the
-generated block. An example would be this compiletime role composition:
-
-  ['BEGIN', 'with q{ MyRole }']
+In addition to all the methods documented here, all methods from
+L<Devel::Declare::Context::Simple> are available and will be delegated to an
+internally stored instance of it.
 
 =head1 ATTRIBUTES
 
@@ -271,17 +284,20 @@ the stack.
 
 =head1 METHODS
 
-All methods from L<Devel::Declare::Context::Simple> should be available and
-will be delegated to an internally stored instance of it.
-
 =head2 add_preamble_code_parts(CodePart @parts)
+
+  Object->add_preamble_code_parts (CodeRef @parts)
+
+See L</add_cleanup_code_parts>.
 
 =head2 add_scope_code_parts(CodePart @parts)
 
+  Object->add_scope_code_parts    (CodeRef @parts)
+
+See L</add_cleanup_code_parts>.
+
 =head2 add_cleanup_code_parts(CodePart @parts)
 
-  Object->add_preamble_code_parts (CodeRef @parts)
-  Object->add_scope_code_parts    (CodeRef @parts)
   Object->add_cleanup_code_parts  (CodeRef @parts)
 
 For these three methods please look at the corresponding C<*_code_parts>
@@ -322,48 +338,122 @@ options as arguments. All options that are not recognized are passed
 through to the C<missing_block_handler>. You are well advised to prefix
 option names in your extensions.
 
-=head2 strip_name_and_options
+=head1 TYPES
 
-  List Object->strip_name_and_options ()
+=head2 BlockCodePart
 
-This will remove an identifier plus any options that follow it from the
-stream. Options are things like C<is Trait>, C<with Role> and
-C<extends ParentClass>. Currently, only these are supported.
+An C<ArrayRef> with at least one element that stringifies to either C<BEGIN>
+or C<END>. The other parts will be stringified and used as the body for the
+generated block. An example would be this compiletime role composition:
 
-The return value is a list with two values:
+  ['BEGIN', 'with q{ MyRole }']
 
-=over
+=head2 CodePart
 
-=item Str $name
-
-The name that was read.
-
-=item HashRef $options
-
-The options that followed the name. This is the returned format:
-
-  Dict[
-      is      => HashRef[Bool],
-      extends => ArrayRef[ParentClass],
-      with    => ArrayRef[Role],
-  ]
-
-=back
+A part of code represented by either a C<Str> or a L</BlockCodePart>.
 
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<Devel::Declare>
+L<MooseX::Declare>
 
-=item * L<Devel::Declare::Context::Simple>
+=item *
+
+L<Devel::Declare>
+
+=item *
+
+L<Devel::Declare::Context::Simple>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

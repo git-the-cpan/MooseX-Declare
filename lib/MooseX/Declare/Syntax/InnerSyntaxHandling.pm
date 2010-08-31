@@ -1,4 +1,11 @@
 package MooseX::Declare::Syntax::InnerSyntaxHandling;
+BEGIN {
+  $MooseX::Declare::Syntax::InnerSyntaxHandling::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.34';
+}
+# ABSTRACT: Keywords inside blocks
 
 use Moose::Role;
 
@@ -6,11 +13,14 @@ use MooseX::Declare::Util qw( outer_stack_push );
 
 use namespace::clean -except => 'meta';
 
+
 requires qw(
     get_identifier
 );
 
+
 sub default_inner { [] }
+
 
 after setup_for => sub {
     my ($self, $setup_class, %args) = @_;
@@ -23,6 +33,7 @@ after setup_for => sub {
         $self->setup_inner_for($setup_class, %args);
     }
 };
+
 
 sub setup_inner_for {
     my ($self, $setup_class, %args) = @_;
@@ -38,7 +49,13 @@ sub setup_inner_for {
     }
 }
 
+
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -48,21 +65,6 @@ MooseX::Declare::Syntax::InnerSyntaxHandling - Keywords inside blocks
 
 This role allows you to setup keyword handlers that are only available
 inside blocks or other scoping environments.
-
-=head1 ATTRIBUTES
-
-=head2 inner
-
-An C<ArrayRef> of keyword handlers that will be setup inside the built
-scope. It is initialized by the L</default_inner> method.
-
-=head1 REQUIRED METHODS
-
-=head2 get_identifier
-
-  Str get_identifier ()
-
-Required to return the name of the identifier of the current handler.
 
 =head1 METHODS
 
@@ -77,7 +79,15 @@ keywords you will have to C<around> this method.
 
   Object->setup_inner_for(ClassName $class, %args)
 
-Sets up all handlers in the L</inner> attribute.
+Sets up all handlers in the inner class.
+
+=head1 REQUIRED METHODS
+
+=head2 get_identifier
+
+  Str get_identifier ()
+
+Required to return the name of the identifier of the current handler.
 
 =head1 MODIFIED METHODS
 
@@ -89,18 +99,106 @@ After the keyword is setup inside itself, this will call L</setup_inner_for>.
 
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<MooseX::Declare::Syntax::NamespaceHandling>
+L<MooseX::Declare>
 
-=item * L<MooseX::Declare::Syntax::MooseSetup>
+=item *
+
+L<MooseX::Declare::Syntax::NamespaceHandling>
+
+=item *
+
+L<MooseX::Declare::Syntax::MooseSetup>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

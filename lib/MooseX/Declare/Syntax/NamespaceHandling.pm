@@ -1,4 +1,11 @@
 package MooseX::Declare::Syntax::NamespaceHandling;
+BEGIN {
+  $MooseX::Declare::Syntax::NamespaceHandling::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.34';
+}
+# ABSTRACT: Handle namespaced blocks
 
 use Moose::Role;
 use Moose::Util qw( does_role );
@@ -12,14 +19,17 @@ use aliased 'MooseX::Declare::StackItem';
 
 use namespace::clean -except => 'meta';
 
+
 with qw(
     MooseX::Declare::Syntax::KeywordHandling
     MooseX::Declare::Syntax::InnerSyntaxHandling
 );
 
+
 requires qw(
     handle_missing_block
 );
+
 
 sub add_namespace_customizations { }
 sub add_optional_customizations  { }
@@ -67,6 +77,7 @@ sub generate_current_stack_item {
         namespace        => $ctx->namespace,
     );
 }
+
 
 sub parse {
     my ($self, $ctx) = @_;
@@ -145,9 +156,13 @@ sub parse {
     $self->handle_post_parsing($ctx, $package, defined($name) ? $name : $anon);
 }
 
+
 1;
 
 __END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -163,13 +178,31 @@ Namespaces are automatically nested. Meaning that, for example, a C<class Bar>
 declaration inside another C<class Foo> block gives the inner one actually the
 name C<Foo::Bar>.
 
+=head1 METHODS
+
+=head2 parse
+
+  Any Object->parse (Object $context)
+
+This is the main handling routine for namespaces. It will remove the namespace
+name and its options. If the handler was invoked without a name, options or
+a following block, it is assumed that this is an instance of an autoquoted
+bareword like C<class => "Foo">.
+
+The return value of the C<parse> method is also the value that is returned
+to the user of the keyword.
+
 =head1 CONSUMES
 
-=over
+=over 4
 
-=item * L<MooseX::Declare::Syntax::KeywordHandling>
+=item *
 
-=item * L<MooseX::Declare::Syntax::InnerSyntaxHandling>
+L<MooseX::Declare::Syntax::KeywordHandling>
+
+=item *
+
+L<MooseX::Declare::Syntax::InnerSyntaxHandling>
 
 =back
 
@@ -256,32 +289,104 @@ equally.
 If you do not extend this method (it will return nothing by default), an error
 will be thrown when a user attempts to declare an anonymous namespace.
 
-=head1 METHODS
-
-=head2 parse
-
-  Any Object->parse (Object $context)
-
-This is the main handling routine for namespaces. It will remove the namespace
-name and its options. If the handler was invoked without a name, options or
-a following block, it is assumed that this is an instance of an autoquoted
-bareword like C<class => "Foo">.
-
-The return value of the C<parse> method is also the value that is returned
-to the user of the keyword.
-
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<MooseX::Declare::Syntax::MooseSetup>
+L<MooseX::Declare>
+
+=item *
+
+L<MooseX::Declare::Syntax::MooseSetup>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

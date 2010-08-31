@@ -1,4 +1,11 @@
 package MooseX::Declare::Context::Namespaced;
+BEGIN {
+  $MooseX::Declare::Context::Namespaced::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Context::Namespaced::VERSION = '0.34';
+}
+# ABSTRACT: Namespaced context
 
 use Moose::Role;
 
@@ -7,10 +14,13 @@ use MooseX::Declare::Util qw( outer_stack_peek );
 
 use namespace::clean -except => 'meta';
 
+
 has namespace => (
     is          => 'rw',
     isa         => 'Str',
 );
+
+
 
 sub strip_namespace {
     my ($self) = @_;
@@ -22,6 +32,7 @@ sub strip_namespace {
 
     return $namespace;
 }
+
 
 sub qualify_namespace {
     my ($self, $namespace) = @_;
@@ -37,9 +48,13 @@ sub qualify_namespace {
     return $outer . $namespace;
 }
 
+
 1;
 
 __END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -77,17 +92,102 @@ will be thrown.
 
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<MooseX::Declare::Context>
+L<MooseX::Declare>
+
+=item *
+
+L<MooseX::Declare::Context>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 

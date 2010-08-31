@@ -1,4 +1,11 @@
 package MooseX::Declare::Syntax::MooseSetup;
+BEGIN {
+  $MooseX::Declare::Syntax::MooseSetup::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Syntax::MooseSetup::VERSION = '0.34';
+}
+# ABSTRACT: Common Moose namespaces declarations
 
 use Moose::Role;
 
@@ -12,16 +19,21 @@ use aliased 'MooseX::Declare::Syntax::Keyword::Clean', 'CleanKeyword';
 
 use namespace::clean -except => 'meta';
 
+
 with qw(
     MooseX::Declare::Syntax::NamespaceHandling
     MooseX::Declare::Syntax::EmptyBlockIfMissing
 );
 
+
 sub auto_make_immutable { 0 }
+
 
 sub imported_moose_symbols { qw( confess blessed ) }
 
+
 sub import_symbols_from { 'Moose' }
+
 
 around default_inner => sub {
     return [
@@ -40,11 +52,13 @@ around default_inner => sub {
     ];
 };
 
+
 after setup_inner_for => sub {
     my ($self, $setup_class, %args) = @_;
     my $keyword = CleanKeyword->new(identifier => 'clean');
     $keyword->setup_for($setup_class, %args);
 };
+
 
 after add_namespace_customizations => sub {
     my ($self, $ctx, $package) = @_;
@@ -61,14 +75,20 @@ after add_namespace_customizations => sub {
          and not exists $ctx->options->{is}{mutable};
 };
 
+
 after handle_post_parsing => sub {
     my ($self, $ctx, $package, $class) = @_;
     $ctx->shadow(sub (&) { shift->(); return $class; });
 };
 
+
+
 1;
 
 __END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -81,16 +101,6 @@ L<NamespaceHandling|MooseX::Declare::Syntax::NamespaceHandling>. It adds all
 the common parts for L<Moose> namespace definitions. Examples of this role
 can be found in the L<class|MooseX::Declare::Syntax::Keyword::Class> and
 L<role|MooseX::Declare::Syntax::Keyword::Role> keywords.
-
-=head1 CONSUMES
-
-=over
-
-=item * L<MooseX::Declare::Syntax::NamespaceHandling>
-
-=item * L<MooseX::Declare::Syntax::EmptyBlockIfMissing>
-
-=back
 
 =head1 METHODS
 
@@ -115,6 +125,20 @@ additional imports to the namespace.
 The namespace from which the additional imports will be imported. This
 will return C<Moose> by default.
 
+=head1 CONSUMES
+
+=over 4
+
+=item *
+
+L<MooseX::Declare::Syntax::NamespaceHandling>
+
+=item *
+
+L<MooseX::Declare::Syntax::EmptyBlockIfMissing>
+
+=back
+
 =head1 MODIFIED METHODS
 
 =head2 default_inner
@@ -123,37 +147,59 @@ will return C<Moose> by default.
 
 This will provide the following default inner-handlers to the namspace:
 
-=over
+=over 4
 
-=item * method
+=item *
+
+method
 
 A simple L<Method|MooseX::Declare::Syntax::Keyword::Method> handler.
 
-=item * around
+=item *
+
+around
 
 This is a L<MethodModifier|MooseX::Declare::Syntax::Keyword::MethodModifier>
 handler that will start the signature of the generated method with
 C<$orig: $self> to provide the original method in C<$orig>.
 
-=item * after
+=item *
 
-=item * before
+after
 
-=item * override
+=item *
 
-=item * augment
+before
+
+=item *
+
+override
+
+=item *
+
+augment
 
 These four handlers are L<MethodModifier|MooseX::Declare::Syntax::Keyword::MethodModifier>
 instances.
 
-=item * clean
+=item *
+
+clean
 
 This is an instance of the L<Clean|MooseX::Declare::Syntax::Keyword::Clean> keyword
 handler.
 
 =back
 
-The original method will never be called and all arguments are ignored at the moment.
+The original method will never be called and all arguments are ignored at the
+moment.
+
+=head2 setup_inner_for
+
+  Object->setup_inner_for (ClassName $class)
+
+This will install a C<with> function that will push its arguments onto a global
+storage array holding the roles of the current namespace.
 
 =head2 add_namespace_customizations
 
@@ -177,25 +223,104 @@ namespace. The C<$name> parameter will be the specified name (in contrast to C<$
 which will always be the fully qualified name) or the anonymous metaclass instance if
 none was specified.
 
-=head2 setup_inner_for
-
-  Object->setup_inner_for (ClassName $class)
-
-This will install a C<with> function that will push its arguments onto a global storage
-array holding the roles of the current namespace.
-
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<Moose>
+L<MooseX::Declare>
+
+=item *
+
+L<Moose>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

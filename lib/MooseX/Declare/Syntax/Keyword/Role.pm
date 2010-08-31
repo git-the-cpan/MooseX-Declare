@@ -1,4 +1,11 @@
 package MooseX::Declare::Syntax::Keyword::Role;
+BEGIN {
+  $MooseX::Declare::Syntax::Keyword::Role::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.34';
+}
+# ABSTRACT: Role declarations
 
 use Moose;
 use Moose::Util qw(does_role);
@@ -10,12 +17,15 @@ use aliased 'MooseX::Declare::Syntax::MethodDeclaration::Parameterized', 'Parame
 
 use namespace::clean -except => 'meta';
 
+
 with qw(
     MooseX::Declare::Syntax::MooseSetup
     MooseX::Declare::Syntax::RoleApplication
 );
 
+
 around imported_moose_symbols => sub { shift->(@_), qw( requires excludes extends has inner super ) };
+
 
 around import_symbols_from => sub {
     my ($next, $self, $ctx) = @_;
@@ -23,6 +33,7 @@ around import_symbols_from => sub {
         ? 'MooseX::Role::Parameterized'
         : 'Moose::Role';
 };
+
 
 around make_anon_metaclass => sub { Moose::Meta::Role->create_anon_role };
 
@@ -39,6 +50,7 @@ around default_inner => sub {
 
     return $inner;
 };
+
 
 sub generate_export { my $self = shift; sub { $self->make_anon_metaclass } }
 
@@ -104,21 +116,17 @@ after handle_post_parsing => sub {
     });
 };
 
+
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
 MooseX::Declare::Syntax::Keyword::Role - Role declarations
-
-=head1 CONSUMES
-
-=over
-
-=item * L<MooseX::Declare::Syntax::MooseSetup>
-
-=item * L<MooseX::Declare::Syntax::RoleApplication>
-
-=back
 
 =head1 METHODS
 
@@ -127,6 +135,20 @@ MooseX::Declare::Syntax::Keyword::Role - Role declarations
   CodeRef Object->generate_export ()
 
 Returns a closure with a call to L</make_anon_metaclass>.
+
+=head1 CONSUMES
+
+=over 4
+
+=item *
+
+L<MooseX::Declare::Syntax::MooseSetup>
+
+=item *
+
+L<MooseX::Declare::Syntax::RoleApplication>
+
+=back
 
 =head1 MODIFIED METHODS
 
@@ -151,20 +173,110 @@ This will return an anonymous instance of L<Moose::Meta::Role>.
 
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<MooseX::Declare::Syntax::Keyword::Class>
+L<MooseX::Declare>
 
-=item * L<MooseX::Declare::Syntax::RoleApplication>
+=item *
 
-=item * L<MooseX::Declare::Syntax::MooseSetup>
+L<MooseX::Declare::Syntax::Keyword::Class>
+
+=item *
+
+L<MooseX::Declare::Syntax::RoleApplication>
+
+=item *
+
+L<MooseX::Declare::Syntax::MooseSetup>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

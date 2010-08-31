@@ -1,4 +1,11 @@
 package MooseX::Declare::Syntax::OptionHandling;
+BEGIN {
+  $MooseX::Declare::Syntax::OptionHandling::AUTHORITY = 'cpan:FLORA';
+}
+BEGIN {
+  $MooseX::Declare::Syntax::OptionHandling::VERSION = '0.34';
+}
+# ABSTRACT: Option parser dispatching
 
 use Moose::Role;
 
@@ -6,9 +13,13 @@ use Carp qw( croak );
 
 use namespace::clean -except => 'meta';
 
+
 requires qw( get_identifier );
 
+
 sub ignored_options { qw( is ) }
+
+
 
 after add_optional_customizations => sub {
     my ($self, $ctx, $package) = @_;
@@ -37,7 +48,13 @@ after add_optional_customizations => sub {
     return 1;
 };
 
+
 1;
+
+__END__
+=pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -48,14 +65,6 @@ MooseX::Declare::Syntax::OptionHandling - Option parser dispatching
 This role will call a C<add_foo_option_customization> for every C<foo> option
 that is discovered.
 
-=head1 REQUIRED METHODS
-
-=head2 get_identifier
-
-  Str Object->get_identifier ()
-
-This must return the name of the current keyword's identifier.
-
 =head1 METHODS
 
 =head2 ignored_options
@@ -64,6 +73,14 @@ This must return the name of the current keyword's identifier.
 
 This method returns a list of option names that won't be dispatched. By default
 this only contains the C<is> option.
+
+=head1 REQUIRED METHODS
+
+=head2 get_identifier
+
+  Str Object->get_identifier ()
+
+This must return the name of the current keyword's identifier.
 
 =head1 MODIFIED METHODS
 
@@ -76,16 +93,102 @@ handling unless the option is listed in the L</ignored_options>.
 
 =head1 SEE ALSO
 
-=over
+=over 4
 
-=item * L<MooseX::Declare>
+=item *
 
-=item * L<MooseX::Declare::Syntax::NamespaceHandling>
+L<MooseX::Declare>
+
+=item *
+
+L<MooseX::Declare::Syntax::NamespaceHandling>
 
 =back
 
-=head1 AUTHOR, COPYRIGHT & LICENSE
+=head1 AUTHORS
 
-See L<MooseX::Declare>
+=over 4
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Ash Berlin <ash@cpan.org>
+
+=item *
+
+Chas. J. Owens IV <chas.owens@gmail.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Florian Ragwitz.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+

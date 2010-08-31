@@ -2,35 +2,190 @@
 abstract: 'Declarative syntax for Moose'
 author:
   - 'Florian Ragwitz <rafl@debian.org>'
+  - 'Ash Berlin <ash@cpan.org>'
+  - 'Chas. J. Owens IV <chas.owens@gmail.com>'
+  - 'Chris Prather <chris@prather.org>'
+  - 'Dave Rolsky <autarch@urth.org>'
+  - 'Devin Austin <dhoss@cpan.org>'
+  - 'Hans Dieter Pearcey <hdp@cpan.org>'
+  - 'Justin Hunter <justin.d.hunter@gmail.com>'
+  - 'Matt Kraai <kraai@ftbfs.org>'
+  - 'Michele Beltrame <arthas@cpan.org>'
+  - 'Nelo Onyiah <nelo.onyiah@gmail.com>'
+  - 'nperez <nperez@cpan.org>'
+  - 'Piers Cawley <pdcawley@bofh.org.uk>'
+  - 'Rafael Kitover <rkitover@io.com>'
+  - "Robert 'phaylon' Sedlacek <rs@474.at>"
+  - 'Stevan Little <stevan.little@iinteractive.com>'
+  - 'Tomas Doran <bobtfish@bobtfish.net>'
+  - 'Yanick Champoux <yanick@babyl.dyndns.org>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
+  FindBin: 0
+  MooseX::Types::Structured: 0
   Test::Exception: 0
+  Test::Moose: 0
+  Test::More: 0.89
   Test::NoWarnings: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
-distribution_type: module
-generated_by: 'Module::Install version 0.92'
+  ExtUtils::MakeMaker: 6.31
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.102400'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: MooseX-Declare
-no_index:
-  directory:
-    - inc
-    - t
-    - xt
 requires:
+  Carp: 0
   Devel::Declare: 0.005011
   List::MoreUtils: 0
   Moose: 0.90
-  MooseX::Method::Signatures: 0.30
+  Moose::Meta::Class: 0
+  Moose::Role: 0
+  Moose::Util: 0
+  Moose::Util::TypeConstraints: 0
+  MooseX::Method::Signatures: 0.36
+  MooseX::Method::Signatures::Meta::Method: 0
+  MooseX::Method::Signatures::Types: 0
   MooseX::Role::Parameterized: 0.12
-  MooseX::Types: 0.20
+  MooseX::Types::Moose: 0.20
+  Sub::Exporter: 0
+  Sub::Install: 0
+  aliased: 0
+  constant: 0
   namespace::autoclean: 0.09
   namespace::clean: 0.11
+  overload: 0
 resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=MooseX-Declare
-  license: http://dev.perl.org/licenses/
+  homepage: http://search.cpan.org/dist/MooseX-Declare
   repository: git://github.com/rafl/moosex-declare.git
-version: 0.33
+version: 0.34
+x_Dist_Zilla:
+  plugins:
+    -
+      class: Dist::Zilla::Plugin::GatherDir
+      name: '@FLORA/@Basic/GatherDir'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::PruneCruft
+      name: '@FLORA/@Basic/PruneCruft'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::ManifestSkip
+      name: '@FLORA/@Basic/ManifestSkip'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::MetaYAML
+      name: '@FLORA/@Basic/MetaYAML'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::License
+      name: '@FLORA/@Basic/License'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::Readme
+      name: '@FLORA/@Basic/Readme'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::ExtraTests
+      name: '@FLORA/@Basic/ExtraTests'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::ExecDir
+      name: '@FLORA/@Basic/ExecDir'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::ShareDir
+      name: '@FLORA/@Basic/ShareDir'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::MakeMaker
+      name: '@FLORA/@Basic/MakeMaker'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::Manifest
+      name: '@FLORA/@Basic/Manifest'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::TestRelease
+      name: '@FLORA/@Basic/TestRelease'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::ConfirmRelease
+      name: '@FLORA/@Basic/ConfirmRelease'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::UploadToCPAN
+      name: '@FLORA/@Basic/UploadToCPAN'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::MetaConfig
+      name: '@FLORA/MetaConfig'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::MetaJSON
+      name: '@FLORA/MetaJSON'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::PkgVersion
+      name: '@FLORA/PkgVersion'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::PodSyntaxTests
+      name: '@FLORA/PodSyntaxTests'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::NoTabsTests
+      name: '@FLORA/NoTabsTests'
+      version: 0.01
+    -
+      class: Dist::Zilla::Plugin::MetaResources
+      name: '@FLORA/MetaResources'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::Authority
+      name: '@FLORA/Authority'
+      version: 1.000
+    -
+      class: Dist::Zilla::Plugin::EOLTests
+      name: '@FLORA/EOLTests'
+      version: 0.02
+    -
+      class: Dist::Zilla::Plugin::PodWeaver
+      name: '@FLORA/PodWeaver'
+      version: 3.101640
+    -
+      class: Dist::Zilla::Plugin::AutoPrereq
+      name: AutoPrereq
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::Prereq
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: runtime
+          type: requires
+      name: Prereq
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':InstallModules'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':TestFiles'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':ExecFiles'
+      version: 4.102340
+    -
+      class: Dist::Zilla::Plugin::FinderCode
+      name: ':ShareFiles'
+      version: 4.102340
+  zilla:
+    class: Dist::Zilla::Dist::Builder
+    config:
+      is_trial: 0
+    version: 4.102340
+x_authority: cpan:FLORA
