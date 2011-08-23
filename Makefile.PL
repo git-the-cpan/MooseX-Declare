@@ -4,7 +4,7 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -20,7 +20,7 @@ my %WriteMakefileArgs = (
     'Test::NoWarnings' => '0'
   },
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'MooseX-Declare',
   'EXE_FILES' => [],
@@ -48,7 +48,7 @@ my %WriteMakefileArgs = (
     'namespace::clean' => '0.11',
     'overload' => '0'
   },
-  'VERSION' => '0.34',
+  'VERSION' => '0.35',
   'test' => {
     'TESTS' => 't/*.t t/recipes/basics/*.t'
   }

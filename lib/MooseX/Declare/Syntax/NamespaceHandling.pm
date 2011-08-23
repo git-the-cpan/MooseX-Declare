@@ -2,8 +2,8 @@ package MooseX::Declare::Syntax::NamespaceHandling;
 BEGIN {
   $MooseX::Declare::Syntax::NamespaceHandling::AUTHORITY = 'cpan:FLORA';
 }
-BEGIN {
-  $MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.34';
+{
+  $MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.35';
 }
 # ABSTRACT: Handle namespaced blocks
 
@@ -383,7 +383,7 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Florian Ragwitz.
+This software is copyright (c) 2011 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

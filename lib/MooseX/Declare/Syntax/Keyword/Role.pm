@@ -2,8 +2,8 @@ package MooseX::Declare::Syntax::Keyword::Role;
 BEGIN {
   $MooseX::Declare::Syntax::Keyword::Role::AUTHORITY = 'cpan:FLORA';
 }
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.34';
+{
+  $MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.35';
 }
 # ABSTRACT: Role declarations
 
@@ -96,6 +96,7 @@ sub add_parameterized_customizations {
 
     for my $var (@vars) {
         $ctx->add_parameter($var->{name} => {
+            is  => 'ro',
             isa => $var->{tc},
             (exists $var->{default}
                 ? (default => sub { eval $var->{default} })
@@ -273,7 +274,7 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Florian Ragwitz.
+This software is copyright (c) 2011 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
