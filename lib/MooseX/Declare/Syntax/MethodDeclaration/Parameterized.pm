@@ -23,6 +23,7 @@ sub metaclass_for_method_application {
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -111,10 +112,9 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Florian Ragwitz.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

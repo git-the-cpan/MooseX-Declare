@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 
-use Test::More tests => 2;
-use Test::Exception;
+use Test::More tests => 3;
+use Test::Fatal;
 
 use MooseX::Declare;
 
@@ -21,10 +21,10 @@ class ValueHolder {
     }
 }
 
-lives_ok {
+is( exception {
     ValueHolder->new(value => 22)->value;
-} 'value() should not die';
+}, undef, 'value() should not die');
 
-lives_and {
+is( exception {
     is(ValueHolder->new->method1, 1, 'method1() should only get 1 element in @_');
-} 'nor should method1()';
+}, undef, 'nor should method1()');

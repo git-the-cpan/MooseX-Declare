@@ -13,6 +13,7 @@ use Devel::Declare ();
 use Sub::Install qw( install_sub );
 use Moose::Meta::Class ();
 use List::MoreUtils qw( uniq );
+use Module::Runtime 'use_module';
 
 use aliased 'MooseX::Declare::Context';
 
@@ -71,12 +72,12 @@ sub parse_declaration {
 
     # find and load context object class
     my $ctx_class = $self->context_class;
-    Class::MOP::load_class $ctx_class;
+    use_module $ctx_class;
 
     # do we have traits?
     if (my @ctx_traits = uniq $self->context_traits) {
 
-        Class::MOP::load_class $_
+        use_module $_
             for @ctx_traits;
 
         $ctx_class = Moose::Meta::Class->create_anon_class(
@@ -101,6 +102,7 @@ sub parse_declaration {
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -249,10 +251,9 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Florian Ragwitz.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More 0.89;
 use Test::Moose;
-use Test::Exception;
+use Test::Fatal;
 
 use FindBin;
 use lib "$FindBin::Bin/lib";
@@ -29,9 +29,9 @@ BEGIN { use_ok('Foo'); }
     meta_ok($pkg);
     can_ok($pkg, 'bar');
     ok(!$pkg->meta->is_immutable);
-    lives_ok(sub {
+    is( exception {
         $pkg->new->bar;
-    });
+    }, undef);
 }
 
 {
@@ -54,8 +54,8 @@ BEGIN { use_ok('Foo'); }
 
 {
     my $quux = Quux->new;
-    lives_ok(sub { $quux->quux });
-    lives_ok(sub { $quux->quux(42) });
+    is( exception { $quux->quux }, undef);
+    is( exception { $quux->quux(42) }, undef);
 }
 
 done_testing;

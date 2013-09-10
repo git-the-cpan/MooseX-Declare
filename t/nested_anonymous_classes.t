@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use Test::More tests => 2;
-use Test::Exception;
+use Test::Fatal;
 
 use MooseX::Declare;
 
@@ -21,10 +21,10 @@ class Foo with Bar
 }
 CLASS
 
-lives_ok(sub {
+is( exception {
     eval $stuff;
     die $@ if $@;
-}, 'Compiled nested anonymous composed class successfully');
+}, undef, 'Compiled nested anonymous composed class successfully');
 
 my $stuff2 = <<'CLASS2';
 use MooseX::Declare;
@@ -46,7 +46,7 @@ my $baz = Baz->new();
 $baz->foo();
 CLASS2
 
-lives_ok(sub {
+is( exception {
     eval $stuff2;
     die $@ if $@;
-}, 'Nested named declaration and execution outside of declaration scope works');
+}, undef, 'Nested named declaration and execution outside of declaration scope works');

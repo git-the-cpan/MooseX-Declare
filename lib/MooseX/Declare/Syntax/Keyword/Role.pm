@@ -8,7 +8,7 @@ BEGIN {
 # ABSTRACT: Role declarations
 
 use Moose;
-use Moose::Util qw(does_role);
+use Moose::Util qw(does_role find_meta);
 use aliased 'Parse::Method::Signatures' => 'PMS';
 use aliased 'MooseX::Declare::Syntax::MethodDeclaration';
 use aliased 'Parse::Method::Signatures::Param::Placeholder';
@@ -109,7 +109,7 @@ after handle_post_parsing => sub {
     my ($self, $ctx, $package, $class) = @_;
     return unless $ctx->has_parameter_signature;
     $ctx->shadow(sub (&) {
-        my $meta = Class::MOP::class_of($class);
+        my $meta = find_meta($class);
         $meta->add_parameter($_->[0], %{ $_->[1] })
             for $ctx->get_parameters;
         $meta->role_generator($_[0]);
@@ -121,6 +121,7 @@ after handle_post_parsing => sub {
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -274,10 +275,9 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Florian Ragwitz.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

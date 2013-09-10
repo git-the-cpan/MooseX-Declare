@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 59;
-use Test::Exception;
+use Test::Fatal;
 
 use MooseX::Declare;
 
@@ -36,13 +36,13 @@ is($point->y, 2, '... got the right value for y');
 $point->y(10);
 is($point->y, 10, '... got the right (changed) value for y');
 
-dies_ok {
+isnt( exception {
     $point->y('Foo');
-} '... cannot assign a non-Int to y';
+}, undef, '... cannot assign a non-Int to y');
 
-dies_ok {
+isnt( exception {
     Point->new();
-} '... must provide required attributes to new';
+}, undef, '... must provide required attributes to new');
 
 $point->clear();
 
@@ -51,17 +51,17 @@ is($point->y, 0, '... got the right (cleared) value for y');
 
 # check the type constraints on the constructor
 
-lives_ok {
+is( exception {
     Point->new(x => 0, y => 0);
-} '... can assign a 0 to x and y';
+}, undef, '... can assign a 0 to x and y');
 
-dies_ok {
+isnt( exception {
     Point->new(x => 10, y => 'Foo');
-} '... cannot assign a non-Int to y';
+}, undef, '... cannot assign a non-Int to y');
 
-dies_ok {
+isnt( exception {
     Point->new(x => 'Foo', y => 10);
-} '... cannot assign a non-Int to x';
+}, undef, '... cannot assign a non-Int to x');
 
 # Point3D
 
@@ -80,21 +80,21 @@ is($point3d->x, 0, '... got the right (cleared) value for x');
 is($point3d->y, 0, '... got the right (cleared) value for y');
 is($point3d->z, 0, '... got the right (cleared) value for z');
 
-dies_ok {
+isnt( exception {
     Point3D->new(x => 10, y => 'Foo', z => 3);
-} '... cannot assign a non-Int to y';
+}, undef, '... cannot assign a non-Int to y');
 
-dies_ok {
+isnt( exception {
     Point3D->new(x => 'Foo', y => 10, z => 3);
-} '... cannot assign a non-Int to x';
+}, undef, '... cannot assign a non-Int to x');
 
-dies_ok {
+isnt( exception {
     Point3D->new(x => 0, y => 10, z => 'Bar');
-} '... cannot assign a non-Int to z';
+}, undef, '... cannot assign a non-Int to z');
 
-dies_ok {
+isnt( exception {
     Point3D->new(x => 10, y => 3);
-} '... z is a required attribute for Point3D';
+}, undef, '... z is a required attribute for Point3D');
 
 # test some class introspection
 

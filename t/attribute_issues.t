@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-use Test::More tests => 6;
-use Test::NoWarnings;
-use Test::Exception;
+use Test::More 0.88;
+use if $ENV{AUTHOR_TESTING}, 'Test::Warnings';
+use Test::Fatal;
 use MooseX::Declare;
 
 class UnderTest {
@@ -23,14 +23,16 @@ is(UnderTest->new->pass_through(param => "send reinforcements, we're going to ad
     => "send reinforcements, we're going to advance",
     "send three and fourpence, we're going to a dance");
 
-lives_ok {
+is( exception {
     is(UnderTest->new->pass_through2(name => "foo")
        => "foo",
        "should be 'foo'");
-} 'name => $value';
+}, undef, 'name => $value');
 
-lives_ok {
+is( exception {
     is(UnderTest->new->pass_through3()
        => "default",
        "should be 'default'");
-} 'optional param';
+}, undef, 'optional param');
+
+done_testing;

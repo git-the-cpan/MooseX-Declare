@@ -1,6 +1,6 @@
 use MooseX::Declare;
 use Test::More tests => 4;
-use Test::Exception;
+use Test::Fatal;
 
 class Foo is dirty {
     use Carp qw/croak/;
@@ -18,6 +18,6 @@ ok( Foo->can('Tuple'));
 
 is(Foo->Tuple->name, 'MooseX::Types::Structured::Tuple[Str,Str]');
 
-throws_ok(sub {
+like( exception {
     Foo->fail;
 }, qr/\bkorv\b/);

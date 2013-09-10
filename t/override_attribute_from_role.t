@@ -1,5 +1,5 @@
 use Test::More tests => 1;
-use Test::Exception;
+use Test::Fatal;
 
 use MooseX::Declare;
 
@@ -7,9 +7,9 @@ role ProvidesFooAttribute {
     has foo => ( is => 'ro' );
 }
 
-lives_ok {
+is( exception {
     class Consumer {
         with 'ProvidesFooAttribute';
         has '+foo' => ( isa => 'Int' );
     }
-} 'Delayed role application does not play nice with has +foo';
+}, undef, 'Delayed role application does not play nice with has +foo');

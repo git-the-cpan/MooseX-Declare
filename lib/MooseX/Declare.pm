@@ -40,6 +40,7 @@ sub keywords {
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -83,6 +84,8 @@ MooseX::Declare - Declarative syntax for Moose
 
 This module provides syntactic sugar for Moose, the postmodern object system
 for Perl 5. When used, it sets up the C<class> and C<role> keywords.
+
+B<Note:> Please see the L</WARNING> section below!
 
 =head1 KEYWORDS
 
@@ -242,6 +245,23 @@ imported C<dump> function will be cleaned during compile time, so only the
 method remains there at run time. If you want to do more esoteric things with
 imports, have a look at the C<clean> keyword and the C<dirty> trait.
 
+=head1 WARNING
+
+=for comment rafl agreed we should have a warning, and mst wrote this:
+
+B<Warning:> MooseX::Declare is based on L<Devel::Declare>, a giant bag of crack
+originally implemented by mst with the goal of upsetting the perl core
+developers so much by its very existence that they implemented proper
+keyword handling in the core.
+
+As of perl5 version 14, this goal has been achieved, and modules such
+as L<Devel::CallParser>, L<Function::Parameters>, and L<Keyword::Simple> provide
+mechanisms to mangle perl syntax that don't require hallucinogenic
+drugs to interpret the error messages they produce.
+
+If you want to use declarative syntax in new code, please for the love
+of kittens get yourself a recent perl and look at L<Moops> instead.
+
 =head1 SEE ALSO
 
 =over 4
@@ -273,6 +293,22 @@ emacs syntax: L<http://github.com/jrockway/cperl-mode>
 =item *
 
 Geany syntax + notes: L<http://www.cattlegrid.info/blog/2009/09/moosex-declare-geany-syntax.html>
+
+=item *
+
+L<Devel::CallParser>
+
+=item *
+
+L<Function::Parameters>
+
+=item *
+
+L<Keyword::Simple>
+
+=item *
+
+L<Moops>
 
 =back
 
@@ -356,10 +392,9 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Florian Ragwitz.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
