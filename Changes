@@ -1,6 +1,6 @@
-Revision history for {{$dist->name}}
+Revision history for MooseX-Declare
 
-{{$NEXT}}
+0.36      2013-09-10 02:33:28Z (Karen Etheridge)
   * Depend on 'aliased'.
   * The test suite now uses Test::Fatal instead of Test::Exception. (Karen
     Etheridge)

@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::MooseSetup::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::MooseSetup::VERSION = '0.35';
+  $MooseX::Declare::Syntax::MooseSetup::VERSION = '0.36';
 }
 # ABSTRACT: Common Moose namespaces declarations
 

@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::Keyword::Class::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.35';
+  $MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.36';
 }
 # ABSTRACT: Class declarations
 

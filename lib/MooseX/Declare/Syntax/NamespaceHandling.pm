@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::NamespaceHandling::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.35';
+  $MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.36';
 }
 # ABSTRACT: Handle namespaced blocks
 

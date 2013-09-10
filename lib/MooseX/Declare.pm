@@ -6,7 +6,7 @@ BEGIN {
   $MooseX::Declare::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::VERSION = '0.35';
+  $MooseX::Declare::VERSION = '0.36';
 }
 # ABSTRACT: Declarative syntax for Moose
 

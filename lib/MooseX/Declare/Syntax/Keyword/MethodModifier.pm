@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::Keyword::MethodModifier::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::Keyword::MethodModifier::VERSION = '0.35';
+  $MooseX::Declare::Syntax::Keyword::MethodModifier::VERSION = '0.36';
 }
 # ABSTRACT: Handle method modifier declarations
 

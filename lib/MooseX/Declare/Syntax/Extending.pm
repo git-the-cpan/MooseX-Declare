@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::Extending::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::Extending::VERSION = '0.35';
+  $MooseX::Declare::Syntax::Extending::VERSION = '0.36';
 }
 # ABSTRACT: Extending with superclasses
 

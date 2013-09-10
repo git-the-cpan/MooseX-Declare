@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::InnerSyntaxHandling::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.35';
+  $MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.36';
 }
 # ABSTRACT: Keywords inside blocks
 

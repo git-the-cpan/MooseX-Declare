@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Context::Parameterized::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Context::Parameterized::VERSION = '0.35';
+  $MooseX::Declare::Context::Parameterized::VERSION = '0.36';
 }
 # ABSTRACT: context for parsing optionally parameterized statements
 

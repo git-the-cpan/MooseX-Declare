@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Context::Namespaced::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Context::Namespaced::VERSION = '0.35';
+  $MooseX::Declare::Context::Namespaced::VERSION = '0.36';
 }
 # ABSTRACT: Namespaced context
 

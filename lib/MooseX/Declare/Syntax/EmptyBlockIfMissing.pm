@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::EmptyBlockIfMissing::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::EmptyBlockIfMissing::VERSION = '0.35';
+  $MooseX::Declare::Syntax::EmptyBlockIfMissing::VERSION = '0.36';
 }
 # ABSTRACT: Handle missing blocks after keywords
 

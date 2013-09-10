@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::OptionHandling::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::OptionHandling::VERSION = '0.35';
+  $MooseX::Declare::Syntax::OptionHandling::VERSION = '0.36';
 }
 # ABSTRACT: Option parser dispatching
 

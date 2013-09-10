@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::MethodDeclaration::Parameterized::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::MethodDeclaration::Parameterized::VERSION = '0.35';
+  $MooseX::Declare::Syntax::MethodDeclaration::Parameterized::VERSION = '0.36';
 }
 
 use Moose::Role;

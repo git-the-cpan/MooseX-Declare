@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Context::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Context::VERSION = '0.35';
+  $MooseX::Declare::Context::VERSION = '0.36';
 }
 # ABSTRACT: Per-keyword declaration context
 

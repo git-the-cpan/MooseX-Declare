@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::RoleApplication::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::RoleApplication::VERSION = '0.35';
+  $MooseX::Declare::Syntax::RoleApplication::VERSION = '0.36';
 }
 # ABSTRACT: Handle user specified roles
 

@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::Keyword::Clean::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::Keyword::Clean::VERSION = '0.35';
+  $MooseX::Declare::Syntax::Keyword::Clean::VERSION = '0.36';
 }
 # ABSTRACT: Explicit namespace cleanups
 

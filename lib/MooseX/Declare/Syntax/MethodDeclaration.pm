@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::MethodDeclaration::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::MethodDeclaration::VERSION = '0.35';
+  $MooseX::Declare::Syntax::MethodDeclaration::VERSION = '0.36';
 }
 # ABSTRACT: Handles method declarations
 

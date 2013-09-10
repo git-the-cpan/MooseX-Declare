@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::Keyword::Namespace::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::Keyword::Namespace::VERSION = '0.35';
+  $MooseX::Declare::Syntax::Keyword::Namespace::VERSION = '0.36';
 }
 # ABSTRACT: Declare outer namespace
 

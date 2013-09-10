@@ -70,7 +70,7 @@ resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=MooseX-Declare
   homepage: http://metacpan.org/release/MooseX-Declare
   repository: git://github.com/rafl/moosex-declare.git
-version: 0.35
+version: 0.36
 x_Dist_Zilla:
   perl:
     version: 5.019003
@@ -226,6 +226,46 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::MojibakeTests
       name: MojibakeTests
       version: 0.5
+    -
+      class: Dist::Zilla::Plugin::Git::Check
+      name: Git::Check
+      version: 2.014
+    -
+      class: Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts
+      name: Git::CheckFor::MergeConflicts
+      version: 0.006
+    -
+      class: Dist::Zilla::Plugin::Git::CheckFor::CorrectBranch
+      name: Git::CheckFor::CorrectBranch
+      version: 0.006
+    -
+      class: Dist::Zilla::Plugin::Git::Remote::Check
+      name: Git::Remote::Check
+      version: 0.1.2
+    -
+      class: Dist::Zilla::Plugin::CheckPrereqsIndexed
+      name: CheckPrereqsIndexed
+      version: 0.009
+    -
+      class: Dist::Zilla::Plugin::Git::Commit
+      name: Git::Commit
+      version: 2.014
+    -
+      class: Dist::Zilla::Plugin::Git::NextVersion
+      name: Git::NextVersion
+      version: 2.014
+    -
+      class: Dist::Zilla::Plugin::NextRelease
+      name: NextRelease
+      version: 4.300038
+    -
+      class: Dist::Zilla::Plugin::Git::Tag
+      name: Git::Tag
+      version: 2.014
+    -
+      class: Dist::Zilla::Plugin::Git::Push
+      name: Git::Push
+      version: 2.014
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'

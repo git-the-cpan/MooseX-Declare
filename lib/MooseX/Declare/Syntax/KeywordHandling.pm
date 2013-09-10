@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::KeywordHandling::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::KeywordHandling::VERSION = '0.35';
+  $MooseX::Declare::Syntax::KeywordHandling::VERSION = '0.36';
 }
 # ABSTRACT: Basic keyword functionality
 

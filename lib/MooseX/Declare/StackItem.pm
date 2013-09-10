@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::StackItem::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::StackItem::VERSION = '0.35';
+  $MooseX::Declare::StackItem::VERSION = '0.36';
 }
 
 use Moose;

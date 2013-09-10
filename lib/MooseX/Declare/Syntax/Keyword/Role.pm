@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Syntax::Keyword::Role::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.35';
+  $MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.36';
 }
 # ABSTRACT: Role declarations
 

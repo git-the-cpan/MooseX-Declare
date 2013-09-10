@@ -6,7 +6,7 @@ BEGIN {
   $MooseX::Declare::Util::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Util::VERSION = '0.35';
+  $MooseX::Declare::Util::VERSION = '0.36';
 }
 # ABSTRACT: Common declarative utility functions
 

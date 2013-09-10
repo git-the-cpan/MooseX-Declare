@@ -3,7 +3,7 @@ BEGIN {
   $MooseX::Declare::Context::WithOptions::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::Context::WithOptions::VERSION = '0.35';
+  $MooseX::Declare::Context::WithOptions::VERSION = '0.36';
 }
 
 use Moose::Role;
