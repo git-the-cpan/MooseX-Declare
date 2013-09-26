@@ -1,5 +1,9 @@
 Revision history for MooseX-Declare
 
+0.37      2013-09-26 04:08:21Z (Karen Etheridge)
+  * repository migrated to the github moose organization
+  * re-release with fixed compile test
+
 0.36      2013-09-10 02:33:28Z (Karen Etheridge)
   * Depend on 'aliased'.
   * The test suite now uses Test::Fatal instead of Test::Exception. (Karen

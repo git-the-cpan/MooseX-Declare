@@ -1,4 +1,6 @@
+Build.PL
 Changes
+INSTALL
 LICENSE
 MANIFEST
 META.json
@@ -33,6 +35,7 @@ lib/MooseX/Declare/Syntax/RoleApplication.pm
 lib/MooseX/Declare/Util.pm
 t/00-check-deps.t
 t/00-compile.t
+t/00-report-prereqs.t
 t/anon.t
 t/attribute_issues.t
 t/autoclean.t
@@ -62,6 +65,7 @@ t/recipes/basics/006_augment_inner.t
 t/role_application.t
 t/role_parameterized.t
 t/segfault_syntax_error.t
+weaver.ini
 xt/release/changes_has_content.t
 xt/release/cpan-changes.t
 xt/release/distmeta.t

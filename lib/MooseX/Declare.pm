@@ -6,8 +6,10 @@ BEGIN {
   $MooseX::Declare::AUTHORITY = 'cpan:FLORA';
 }
 {
-  $MooseX::Declare::VERSION = '0.36';
+  $MooseX::Declare::VERSION = '0.37';
 }
+# git description: 0.36-9-g9583e21
+
 # ABSTRACT: Declarative syntax for Moose
 
 use aliased 'MooseX::Declare::Syntax::Keyword::Class',      'ClassKeyword';
@@ -312,17 +314,17 @@ L<Moops>
 
 =back
 
-=head1 AUTHORS
+=head1 AUTHOR
+
+Florian Ragwitz <rafl@debian.org>
+
+=head1 CONTRIBUTORS
 
 =over 4
 
 =item *
 
-Florian Ragwitz <rafl@debian.org>
-
-=item *
-
-Ash Berlin <ash@cpan.org>
+Ash Berlin <ash_github@firemirror.com>
 
 =item *
 
@@ -350,6 +352,10 @@ Justin Hunter <justin.d.hunter@gmail.com>
 
 =item *
 
+Karen Etheridge <ether@cpan.org>
+
+=item *
+
 Matt Kraai <kraai@ftbfs.org>
 
 =item *
@@ -362,7 +368,7 @@ Nelo Onyiah <nelo.onyiah@gmail.com>
 
 =item *
 
-nperez <nperez@cpan.org>
+Nick Perez <nperez@cpan.org>
 
 =item *
 
@@ -388,11 +394,15 @@ Tomas Doran <bobtfish@bobtfish.net>
 
 Yanick Champoux <yanick@babyl.dyndns.org>
 
+=item *
+
+leedo <lee@laylward.com>
+
 =back
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Florian Ragwitz.
+This software is copyright (c) 2008 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
