@@ -1,9 +1,9 @@
 package MooseX::Declare::Context::Parameterized;
+{
+  $MooseX::Declare::Context::Parameterized::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Context::Parameterized::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Context::Parameterized::VERSION = '0.37';
 }
 # ABSTRACT: context for parsing optionally parameterized statements
 
@@ -49,7 +49,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

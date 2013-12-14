@@ -1,9 +1,9 @@
 package MooseX::Declare::StackItem;
+{
+  $MooseX::Declare::StackItem::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::StackItem::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::StackItem::VERSION = '0.37';
 }
 
 use Moose;
@@ -65,7 +65,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

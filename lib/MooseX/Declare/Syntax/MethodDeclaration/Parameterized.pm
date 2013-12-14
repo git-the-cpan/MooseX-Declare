@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::MethodDeclaration::Parameterized;
+{
+  $MooseX::Declare::Syntax::MethodDeclaration::Parameterized::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::MethodDeclaration::Parameterized::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::MethodDeclaration::Parameterized::VERSION = '0.37';
 }
 
 use Moose::Role;
@@ -26,7 +26,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

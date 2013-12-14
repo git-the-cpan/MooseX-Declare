@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::OptionHandling;
+{
+  $MooseX::Declare::Syntax::OptionHandling::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::OptionHandling::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::OptionHandling::VERSION = '0.37';
 }
 # ABSTRACT: Option parser dispatching
 
@@ -55,7 +55,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

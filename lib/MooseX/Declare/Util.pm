@@ -2,11 +2,11 @@ use strict;
 use warnings;
 
 package MooseX::Declare::Util;
+{
+  $MooseX::Declare::Util::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Util::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Util::VERSION = '0.37';
 }
 # ABSTRACT: Common declarative utility functions
 
@@ -55,7 +55,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

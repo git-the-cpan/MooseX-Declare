@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::Extending;
+{
+  $MooseX::Declare::Syntax::Extending::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::Extending::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::Extending::VERSION = '0.37';
 }
 # ABSTRACT: Extending with superclasses
 
@@ -43,7 +43,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

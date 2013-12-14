@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::InnerSyntaxHandling;
+{
+  $MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::InnerSyntaxHandling::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.37';
 }
 # ABSTRACT: Keywords inside blocks
 
@@ -56,7 +56,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

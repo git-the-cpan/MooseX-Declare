@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::Keyword::MethodModifier;
+{
+  $MooseX::Declare::Syntax::Keyword::MethodModifier::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::Keyword::MethodModifier::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::Keyword::MethodModifier::VERSION = '0.37';
 }
 # ABSTRACT: Handle method modifier declarations
 
@@ -36,7 +36,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

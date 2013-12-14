@@ -1,9 +1,9 @@
 package MooseX::Declare::Context::WithOptions;
+{
+  $MooseX::Declare::Context::WithOptions::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Context::WithOptions::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Context::WithOptions::VERSION = '0.37';
 }
 
 use Moose::Role;
@@ -76,7 +76,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

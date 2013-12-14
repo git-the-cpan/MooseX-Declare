@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::EmptyBlockIfMissing;
+{
+  $MooseX::Declare::Syntax::EmptyBlockIfMissing::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::EmptyBlockIfMissing::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::EmptyBlockIfMissing::VERSION = '0.37';
 }
 # ABSTRACT: Handle missing blocks after keywords
 
@@ -26,7 +26,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

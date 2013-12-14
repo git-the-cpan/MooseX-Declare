@@ -1,9 +1,9 @@
 package MooseX::Declare::Context;
+{
+  $MooseX::Declare::Context::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Context::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Context::VERSION = '0.37';
 }
 # ABSTRACT: Per-keyword declaration context
 
@@ -234,7 +234,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::KeywordHandling;
+{
+  $MooseX::Declare::Syntax::KeywordHandling::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::KeywordHandling::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::KeywordHandling::VERSION = '0.37';
 }
 # ABSTRACT: Basic keyword functionality
 
@@ -105,7 +105,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

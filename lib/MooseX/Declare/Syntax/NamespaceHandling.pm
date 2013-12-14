@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::NamespaceHandling;
+{
+  $MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::NamespaceHandling::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.37';
 }
 # ABSTRACT: Handle namespaced blocks
 
@@ -163,7 +163,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

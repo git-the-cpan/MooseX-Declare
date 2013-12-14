@@ -1,57 +1,8 @@
-use strict;
-use warnings;
-
-package MooseX::Declare;
-{
-  $MooseX::Declare::VERSION = '0.38';
-}
-# git description: 0.37-9-g548a1bd
-
-BEGIN {
-  $MooseX::Declare::AUTHORITY = 'cpan:FLORA';
-}
-# ABSTRACT: Declarative syntax for Moose
-
-use aliased 'MooseX::Declare::Syntax::Keyword::Class',      'ClassKeyword';
-use aliased 'MooseX::Declare::Syntax::Keyword::Role',       'RoleKeyword';
-use aliased 'MooseX::Declare::Syntax::Keyword::Namespace',  'NamespaceKeyword';
-
-use namespace::clean 0.11;
-
-sub import {
-    my ($class, %args) = @_;
-
-    my $caller = caller();
-
-    strict->import;
-    warnings->import;
-
-    for my $keyword ($class->keywords) {
-        $keyword->setup_for($caller, %args, provided_by => $class);
-    }
-}
-
-sub keywords {
-    ClassKeyword->new(identifier => 'class'),
-    RoleKeyword->new(identifier => 'role'),
-    NamespaceKeyword->new(identifier => 'namespace'),
-}
-
-
-
-1;
-
-__END__
-
-=pod
-
-=encoding UTF-8
-
-=head1 NAME
+# NAME
 
 MooseX::Declare - Declarative syntax for Moose
 
-=head1 SYNOPSIS
+# SYNOPSIS
 
     use MooseX::Declare;
 
@@ -82,16 +33,16 @@ MooseX::Declare - Declarative syntax for Moose
         }
     }
 
-=head1 DESCRIPTION
+# DESCRIPTION
 
 This module provides syntactic sugar for Moose, the postmodern object system
-for Perl 5. When used, it sets up the C<class> and C<role> keywords.
+for Perl 5. When used, it sets up the `class` and `role` keywords.
 
-B<Note:> Please see the L</WARNING> section below!
+__Note:__ Please see the ["WARNING"](#warning) section below!
 
-=head1 KEYWORDS
+# KEYWORDS
 
-=head2 class
+## class
 
     class Foo { ... }
 
@@ -99,7 +50,7 @@ B<Note:> Please see the L</WARNING> section below!
 
 Declares a new class. The class can be either named or anonymous, depending on
 whether or not a classname is given. Within the class definition Moose and
-L<MooseX::Method::Signatures> are set up automatically in addition to the other
+[MooseX::Method::Signatures](https://metacpan.org/pod/MooseX::Method::Signatures) are set up automatically in addition to the other
 keywords described in this document. At the end of the definition the class
 will be made immutable. namespace::autoclean is injected to clean up Moose and
 other imports for you.
@@ -109,35 +60,31 @@ Because of the way the options are parsed, you cannot have a class named "is",
 
 It's possible to specify options for classes:
 
-=over 4
+- extends
 
-=item extends
+        class Foo extends Bar { ... }
 
-    class Foo extends Bar { ... }
+    Sets a superclass for the class being declared.
 
-Sets a superclass for the class being declared.
+- with
 
-=item with
+        class Foo with Role             { ... }
+        class Foo with Role1 with Role2 { ... }
+        class Foo with (Role1, Role2)   { ... }
 
-    class Foo with Role             { ... }
-    class Foo with Role1 with Role2 { ... }
-    class Foo with (Role1, Role2)   { ... }
+    Applies a role or roles to the class being declared.
 
-Applies a role or roles to the class being declared.
+- is mutable
 
-=item is mutable
+        class Foo is mutable { ... }
 
-    class Foo is mutable { ... }
+    Causes the class not to be made immutable after its definition.
 
-Causes the class not to be made immutable after its definition.
+    Options can also be provided for anonymous classes using the same syntax:
 
-Options can also be provided for anonymous classes using the same syntax:
+        my $meta_class = class with Role;
 
-    my $meta_class = class with Role;
-
-=back
-
-=head2 role
+## role
 
     role Foo { ... }
 
@@ -151,17 +98,13 @@ clean up Moose::Role and other imports for you.
 
 It's possible to specify options for roles:
 
-=over 4
+- with
 
-=item with
+        role Foo with Bar { ... }
 
-    role Foo with Bar { ... }
+    Applies a role to the role being declared.
 
-Applies a role to the role being declared.
-
-=back
-
-=head2 before / after / around / override / augment
+## before / after / around / override / augment
 
     before   foo ($x, $y, $z) { ... }
     after    bar ($x, $y, $z) { ... }
@@ -169,26 +112,26 @@ Applies a role to the role being declared.
     override moo ($x, $y, $z) { ... }
     augment  kuh ($x, $y, $z) { ... }
 
-Add a method modifier. Those work like documented in L<Moose|Moose>, except for
+Add a method modifier. Those work like documented in [Moose](https://metacpan.org/pod/Moose), except for
 the slightly nicer syntax and the method signatures, which work like documented
-in L<MooseX::Method::Signatures|MooseX::Method::Signatures>.
+in [MooseX::Method::Signatures](https://metacpan.org/pod/MooseX::Method::Signatures).
 
-For the C<around> modifier an additional argument called C<$orig> is
+For the `around` modifier an additional argument called `$orig` is
 automatically set up as the invocant for the method.
 
-=head2 clean
+## clean
 
-Sometimes you don't want the automatic cleaning the C<class> and C<role>
+Sometimes you don't want the automatic cleaning the `class` and `role`
 keywords provide using namespace::autoclean. In those cases you can specify the
-C<dirty> trait for your class or role:
+`dirty` trait for your class or role:
 
     use MooseX::Declare;
     class Foo is dirty { ... }
 
 This will prevent cleaning of your namespace, except for the keywords imported
-from C<Moose> or C<Moose::Role>. Additionally, a C<clean> keyword is provided,
+from `Moose` or `Moose::Role`. Additionally, a `clean` keyword is provided,
 which allows you to explicitly clean all functions that were defined prior to
-calling C<clean>. Here's an example:
+calling `clean`. Here's an example:
 
     use MooseX::Declare;
     class Foo is dirty {
@@ -200,7 +143,7 @@ calling C<clean>. Here's an example:
 With that, the helper function won't be available as a method to a user of your
 class, but you're still able to use it inside your class.
 
-=head1 NOTE ON IMPORTS
+# NOTE ON IMPORTS
 
 When creating a class with MooseX::Declare like:
 
@@ -218,7 +161,7 @@ What actually happens is something like this:
     }
 
 So if you declare imports outside the class, the symbols get imported into the
-C<main::> namespace, not the class' namespace. The symbols then cannot be called
+`main::` namespace, not the class' namespace. The symbols then cannot be called
 from within the class:
 
     use MooseX::Declare;
@@ -241,170 +184,70 @@ To solve this, only import MooseX::Declare outside the class definition
     Foo->new->dump($some_value);
     Foo->new->pp($some_value);
 
-B<NOTE> that the import C<Data::Dump::dump()> and the method C<Foo::dump()>,
+__NOTE__ that the import `Data::Dump::dump()` and the method `Foo::dump()`,
 although having the same name, do not conflict with each other, because the
-imported C<dump> function will be cleaned during compile time, so only the
+imported `dump` function will be cleaned during compile time, so only the
 method remains there at run time. If you want to do more esoteric things with
-imports, have a look at the C<clean> keyword and the C<dirty> trait.
+imports, have a look at the `clean` keyword and the `dirty` trait.
 
-=head1 WARNING
+# WARNING
 
-=for comment rafl agreed we should have a warning, and mst wrote this:
-
-B<Warning:> MooseX::Declare is based on L<Devel::Declare>, a giant bag of crack
+__Warning:__ MooseX::Declare is based on [Devel::Declare](https://metacpan.org/pod/Devel::Declare), a giant bag of crack
 originally implemented by mst with the goal of upsetting the perl core
 developers so much by its very existence that they implemented proper
 keyword handling in the core.
 
 As of perl5 version 14, this goal has been achieved, and modules such
-as L<Devel::CallParser>, L<Function::Parameters>, and L<Keyword::Simple> provide
+as [Devel::CallParser](https://metacpan.org/pod/Devel::CallParser), [Function::Parameters](https://metacpan.org/pod/Function::Parameters), and [Keyword::Simple](https://metacpan.org/pod/Keyword::Simple) provide
 mechanisms to mangle perl syntax that don't require hallucinogenic
 drugs to interpret the error messages they produce.
 
 If you want to use declarative syntax in new code, please for the love
-of kittens get yourself a recent perl and look at L<Moops> instead.
+of kittens get yourself a recent perl and look at [Moops](https://metacpan.org/pod/Moops) instead.
 
-=head1 SEE ALSO
+# SEE ALSO
 
-=over 4
+- [Moose](https://metacpan.org/pod/Moose)
+- [Moose::Role](https://metacpan.org/pod/Moose::Role)
+- [MooseX::Method::Signatures](https://metacpan.org/pod/MooseX::Method::Signatures)
+- [namespace::autoclean](https://metacpan.org/pod/namespace::autoclean)
+- vim syntax: [http://www.vim.org/scripts/script.php?script_id=2526](http://www.vim.org/scripts/script.php?script_id=2526)
+- emacs syntax: [http://github.com/jrockway/cperl-mode](http://github.com/jrockway/cperl-mode)
+- Geany syntax + notes: [http://www.cattlegrid.info/blog/2009/09/moosex-declare-geany-syntax.html](http://www.cattlegrid.info/blog/2009/09/moosex-declare-geany-syntax.html)
+- [Devel::CallParser](https://metacpan.org/pod/Devel::CallParser)
+- [Function::Parameters](https://metacpan.org/pod/Function::Parameters)
+- [Keyword::Simple](https://metacpan.org/pod/Keyword::Simple)
+- [Moops](https://metacpan.org/pod/Moops)
 
-=item *
-
-L<Moose>
-
-=item *
-
-L<Moose::Role>
-
-=item *
-
-L<MooseX::Method::Signatures>
-
-=item *
-
-L<namespace::autoclean>
-
-=item *
-
-vim syntax: L<http://www.vim.org/scripts/script.php?script_id=2526>
-
-=item *
-
-emacs syntax: L<http://github.com/jrockway/cperl-mode>
-
-=item *
-
-Geany syntax + notes: L<http://www.cattlegrid.info/blog/2009/09/moosex-declare-geany-syntax.html>
-
-=item *
-
-L<Devel::CallParser>
-
-=item *
-
-L<Function::Parameters>
-
-=item *
-
-L<Keyword::Simple>
-
-=item *
-
-L<Moops>
-
-=back
-
-=head1 AUTHOR
+# AUTHOR
 
 Florian Ragwitz <rafl@debian.org>
 
-=head1 CONTRIBUTORS
+# CONTRIBUTORS
 
-=over 4
+- Ash Berlin <ash\_github@firemirror.com>
+- Chas. J. Owens IV <chas.owens@gmail.com>
+- Chris Prather <chris@prather.org>
+- Dave Rolsky <autarch@urth.org>
+- Devin Austin <dhoss@cpan.org>
+- Hans Dieter Pearcey <hdp@cpan.org>
+- Justin Hunter <justin.d.hunter@gmail.com>
+- Karen Etheridge <ether@cpan.org>
+- Matt Kraai <kraai@ftbfs.org>
+- Michele Beltrame <arthas@cpan.org>
+- Nelo Onyiah <nelo.onyiah@gmail.com>
+- Nick Perez <nperez@cpan.org>
+- Piers Cawley <pdcawley@bofh.org.uk>
+- Rafael Kitover <rkitover@io.com>
+- Robert 'phaylon' Sedlacek <rs@474.at>
+- Stevan Little <stevan.little@iinteractive.com>
+- Tomas Doran <bobtfish@bobtfish.net>
+- Yanick Champoux <yanick@babyl.dyndns.org>
+- leedo <lee@laylward.com>
 
-=item *
-
-Ash Berlin <ash_github@firemirror.com>
-
-=item *
-
-Chas. J. Owens IV <chas.owens@gmail.com>
-
-=item *
-
-Chris Prather <chris@prather.org>
-
-=item *
-
-Dave Rolsky <autarch@urth.org>
-
-=item *
-
-Devin Austin <dhoss@cpan.org>
-
-=item *
-
-Hans Dieter Pearcey <hdp@cpan.org>
-
-=item *
-
-Justin Hunter <justin.d.hunter@gmail.com>
-
-=item *
-
-Karen Etheridge <ether@cpan.org>
-
-=item *
-
-Matt Kraai <kraai@ftbfs.org>
-
-=item *
-
-Michele Beltrame <arthas@cpan.org>
-
-=item *
-
-Nelo Onyiah <nelo.onyiah@gmail.com>
-
-=item *
-
-Nick Perez <nperez@cpan.org>
-
-=item *
-
-Piers Cawley <pdcawley@bofh.org.uk>
-
-=item *
-
-Rafael Kitover <rkitover@io.com>
-
-=item *
-
-Robert 'phaylon' Sedlacek <rs@474.at>
-
-=item *
-
-Stevan Little <stevan.little@iinteractive.com>
-
-=item *
-
-Tomas Doran <bobtfish@bobtfish.net>
-
-=item *
-
-Yanick Champoux <yanick@babyl.dyndns.org>
-
-=item *
-
-leedo <lee@laylward.com>
-
-=back
-
-=head1 COPYRIGHT AND LICENSE
+# COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2008 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
-
-=cut

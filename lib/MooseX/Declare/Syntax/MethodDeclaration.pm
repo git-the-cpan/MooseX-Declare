@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::MethodDeclaration;
+{
+  $MooseX::Declare::Syntax::MethodDeclaration::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::MethodDeclaration::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::MethodDeclaration::VERSION = '0.37';
 }
 # ABSTRACT: Handles method declarations
 
@@ -58,7 +58,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

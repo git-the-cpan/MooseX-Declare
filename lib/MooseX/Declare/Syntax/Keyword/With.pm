@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::Keyword::With;
+{
+  $MooseX::Declare::Syntax::Keyword::With::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::Keyword::With::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::Keyword::With::VERSION = '0.37';
 }
 # ABSTRACT: Apply roles within a class- or role-body
 
@@ -41,7 +41,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

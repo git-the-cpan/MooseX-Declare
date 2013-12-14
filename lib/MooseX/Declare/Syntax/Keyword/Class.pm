@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::Keyword::Class;
+{
+  $MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::Keyword::Class::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.37';
 }
 # ABSTRACT: Class declarations
 
@@ -38,7 +38,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::MooseSetup;
+{
+  $MooseX::Declare::Syntax::MooseSetup::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::MooseSetup::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::MooseSetup::VERSION = '0.37';
 }
 # ABSTRACT: Common Moose namespaces declarations
 
@@ -89,7 +89,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

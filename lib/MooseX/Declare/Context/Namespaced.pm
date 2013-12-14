@@ -1,9 +1,9 @@
 package MooseX::Declare::Context::Namespaced;
+{
+  $MooseX::Declare::Context::Namespaced::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Context::Namespaced::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Context::Namespaced::VERSION = '0.37';
 }
 # ABSTRACT: Namespaced context
 
@@ -55,7 +55,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

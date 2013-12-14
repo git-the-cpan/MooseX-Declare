@@ -4,8 +4,7 @@ use Test::More 0.89;
 use Test::Moose;
 use Test::Fatal;
 
-use FindBin;
-use lib "$FindBin::Bin/lib";
+use lib 't/lib';
 
 BEGIN { use_ok('Foo'); }
 

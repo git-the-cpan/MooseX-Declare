@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::Keyword::Namespace;
+{
+  $MooseX::Declare::Syntax::Keyword::Namespace::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::Keyword::Namespace::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::Keyword::Namespace::VERSION = '0.37';
 }
 # ABSTRACT: Declare outer namespace
 
@@ -49,7 +49,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 

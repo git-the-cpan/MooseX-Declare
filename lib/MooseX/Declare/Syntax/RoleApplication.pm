@@ -1,9 +1,9 @@
 package MooseX::Declare::Syntax::RoleApplication;
+{
+  $MooseX::Declare::Syntax::RoleApplication::VERSION = '0.38';
+}
 BEGIN {
   $MooseX::Declare::Syntax::RoleApplication::AUTHORITY = 'cpan:FLORA';
-}
-{
-  $MooseX::Declare::Syntax::RoleApplication::VERSION = '0.37';
 }
 # ABSTRACT: Handle user specified roles
 
@@ -44,7 +44,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
