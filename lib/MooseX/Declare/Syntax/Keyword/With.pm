@@ -1,18 +1,37 @@
 package MooseX::Declare::Syntax::Keyword::With;
-{
-  $MooseX::Declare::Syntax::Keyword::With::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::With::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Apply roles within a class- or role-body
-
+$MooseX::Declare::Syntax::Keyword::With::VERSION = '0.39';
 use Moose;
 use Moose::Util;
 use MooseX::Declare::Util qw( outer_stack_peek );
 use aliased 'MooseX::Declare::Context::Namespaced';
 use namespace::autoclean 0.09;
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   use MooseX::Declare;
+#pod
+#pod   class ::Baz {
+#pod       with 'Qux';
+#pod       ...
+#pod   }
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod The C<with> keyword allows you to apply roles to the local class or role. It
+#pod differs from the C<with>-option of the C<class> and C<role> keywords in that it
+#pod applies the roles immediately instead of defering application until the end of
+#pod the class- or role-definition.
+#pod
+#pod It also differs slightly from the C<with> provided by L<Moose|Moose> in that it
+#pod expands relative role names (C<::Foo>) according to the currenc C<namespace>.
+#pod
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::KeywordHandling>
+#pod
+#pod =cut
 
 with qw(
     MooseX::Declare::Syntax::KeywordHandling
@@ -20,6 +39,14 @@ with qw(
 
 around context_traits => sub { shift->(@_), Namespaced };
 
+#pod =method parse
+#pod
+#pod   Object->parse(Object $context)
+#pod
+#pod Will skip the declarator and make with C<with> invocation apply the set of
+#pod specified roles after possible C<namespace>-expanding has been done.
+#pod
+#pod =cut
 
 sub parse {
     my ($self, $ctx) = @_;
@@ -34,6 +61,13 @@ sub parse {
     });
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::Keyword::Namespace>
+#pod
+#pod =cut
 
 1;
 
@@ -46,6 +80,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::Keyword::With - Apply roles within a class- or role-body
+
+=head1 VERSION
+
+version 0.39
 
 =head1 SYNOPSIS
 

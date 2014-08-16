@@ -1,12 +1,6 @@
 package MooseX::Declare::Context;
-{
-  $MooseX::Declare::Context::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Context::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Per-keyword declaration context
-
+$MooseX::Declare::Context::VERSION = '0.39';
 use Moose 0.90;
 use Moose::Util::TypeConstraints;
 use Carp qw/croak/;
@@ -15,11 +9,40 @@ use aliased 'Devel::Declare::Context::Simple', 'DDContext';
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This is not a subclass of L<Devel::Declare::Context::Simple>, but it will
+#pod delegate all default methods and extend it with some attributes and methods
+#pod of its own.
+#pod
+#pod A context object will be instanciated for every keyword that is handled by
+#pod L<MooseX::Declare>. If handlers want to communicate with other handlers (for
+#pod example handlers that will only be setup inside a namespace block) it must
+#pod do this via the generated code.
+#pod
+#pod In addition to all the methods documented here, all methods from
+#pod L<Devel::Declare::Context::Simple> are available and will be delegated to an
+#pod internally stored instance of it.
+#pod
+#pod =type BlockCodePart
+#pod
+#pod An C<ArrayRef> with at least one element that stringifies to either C<BEGIN>
+#pod or C<END>. The other parts will be stringified and used as the body for the
+#pod generated block. An example would be this compiletime role composition:
+#pod
+#pod   ['BEGIN', 'with q{ MyRole }']
+#pod
+#pod =cut
 
 subtype 'MooseX::Declare::BlockCodePart',
     as 'ArrayRef',
     where { @$_ > 1 and sub { grep { $_[0] eq $_ } qw( BEGIN END ) } -> ($_->[0]) };
 
+#pod =type CodePart
+#pod
+#pod A part of code represented by either a C<Str> or a L</BlockCodePart>.
+#pod
+#pod =cut
 
 subtype 'MooseX::Declare::CodePart',
      as 'Str|MooseX::Declare::BlockCodePart';
@@ -48,6 +71,11 @@ has provided_by => (
 );
 
 
+#pod =attr caller_file
+#pod
+#pod A required C<Str> containing the file the keyword was encountered in.
+#pod
+#pod =cut
 
 has caller_file => (
     is          => 'rw',
@@ -55,6 +83,18 @@ has caller_file => (
     required    => 1,
 );
 
+#pod =attr preamble_code_parts
+#pod
+#pod An C<ArrayRef> of L</CodePart>s that will be used as preamble. A preamble in
+#pod this context means the beginning of the generated code.
+#pod
+#pod =method add_preamble_code_parts(CodePart @parts)
+#pod
+#pod   Object->add_preamble_code_parts (CodeRef @parts)
+#pod
+#pod See L</add_cleanup_code_parts>.
+#pod
+#pod =cut
 
 has preamble_code_parts => (
     traits    => ['Array'],
@@ -67,6 +107,18 @@ has preamble_code_parts => (
     },
 );
 
+#pod =attr scope_code_parts
+#pod
+#pod These parts will come before the actual body and after the
+#pod L</preamble_code_parts>. It is an C<ArrayRef> of L</CodePart>s.
+#pod
+#pod =method add_scope_code_parts(CodePart @parts)
+#pod
+#pod   Object->add_scope_code_parts    (CodeRef @parts)
+#pod
+#pod See L</add_cleanup_code_parts>.
+#pod
+#pod =cut
 
 has scope_code_parts => (
     traits    => ['Array'],
@@ -79,6 +131,21 @@ has scope_code_parts => (
     },
 );
 
+#pod =attr cleanup_code_parts
+#pod
+#pod An C<ArrayRef> of L</CodePart>s that will not be directly inserted
+#pod into the code, but instead be installed in a handler that will run at
+#pod the end of the scope so you can do namespace cleanups and such.
+#pod
+#pod =method add_cleanup_code_parts(CodePart @parts)
+#pod
+#pod   Object->add_cleanup_code_parts  (CodeRef @parts)
+#pod
+#pod For these three methods please look at the corresponding C<*_code_parts>
+#pod attribute in the list above. These methods are merely convenience methods
+#pod that allow adding entries to the code part containers.
+#pod
+#pod =cut
 
 has cleanup_code_parts => (
     traits    => ['Array'],
@@ -92,6 +159,13 @@ has cleanup_code_parts => (
     },
 );
 
+#pod =attr stack
+#pod
+#pod An C<ArrayRef> that contains the stack of handlers. A keyword that was
+#pod only setup inside a scoped block will have the blockhandler be put in
+#pod the stack.
+#pod
+#pod =cut
 
 has stack => (
     is          => 'rw',
@@ -100,6 +174,13 @@ has stack => (
     required    => 1,
 );
 
+#pod =method inject_code_parts_here
+#pod
+#pod   True Object->inject_code_parts_here (CodePart @parts)
+#pod
+#pod Will inject the passed L</CodePart>s at the current position in the code.
+#pod
+#pod =cut
 
 sub inject_code_parts_here {
     my ($self, @parts) = @_;
@@ -115,6 +196,13 @@ sub inject_code_parts_here {
     return 1;
 }
 
+#pod =method peek_next_char
+#pod
+#pod   Str Object->peek_next_char ()
+#pod
+#pod Will return the next char without stripping it from the stream.
+#pod
+#pod =cut
 
 sub peek_next_char {
     my ($self) = @_;
@@ -136,6 +224,29 @@ sub peek_next_word {
     return substr($linestr, $self->offset, $len);
 }
 
+#pod =method inject_code_parts
+#pod
+#pod   Object->inject_code_parts (
+#pod       Bool    :$inject_cleanup_code_parts,
+#pod       CodeRef :$missing_block_handler
+#pod   )
+#pod
+#pod This will inject the code parts from the attributes above at the current
+#pod position. The preamble and scope code parts will be inserted first. Then
+#pod then call to the cleanup code will be injected, unless the options
+#pod contain a key named C<inject_cleanup_code_parts> with a false value.
+#pod
+#pod The C<inject_if_block> method will be called if the next char is a C<{>
+#pod indicating a following block.
+#pod
+#pod If it is not a block, but a semi-colon is found and the options
+#pod contained a C<missing_block_handler> key was passed, it will be called
+#pod as method on the context object with the code to inject and the
+#pod options as arguments. All options that are not recognized are passed
+#pod through to the C<missing_block_handler>. You are well advised to prefix
+#pod option names in your extensions.
+#pod
+#pod =cut
 
 sub inject_code_parts {
     my ($self, %args) = @_;
@@ -227,6 +338,14 @@ sub strip_word {
     return scalar $self->strip_name;
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<Devel::Declare>
+#pod * L<Devel::Declare::Context::Simple>
+#pod
+#pod =cut
 
 1;
 
@@ -239,6 +358,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Context - Per-keyword declaration context
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

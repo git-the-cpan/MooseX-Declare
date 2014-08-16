@@ -1,12 +1,6 @@
 package MooseX::Declare::Syntax::Keyword::Clean;
-{
-  $MooseX::Declare::Syntax::Keyword::Clean::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::Clean::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Explicit namespace cleanups
-
+$MooseX::Declare::Syntax::Keyword::Clean::VERSION = '0.39';
 use Moose;
 
 use constant NAMESPACING_ROLE => 'MooseX::Declare::Syntax::NamespaceHandling';
@@ -14,6 +8,17 @@ use Carp qw( cluck );
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This keyword will inject a call to L<namespace::clean> into its current
+#pod position.
+#pod
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::KeywordHandling>
+#pod
+#pod =cut
 
 with qw(
     MooseX::Declare::Syntax::KeywordHandling
@@ -30,6 +35,14 @@ sub find_namespace_handler {
     return undef;
 }
 
+#pod =method parse
+#pod
+#pod   Object->parse(Object $context)
+#pod
+#pod This will inject a call to L<namespace::clean> C<< -except => 'meta' >> into
+#pod the code at the position of the keyword.
+#pod
+#pod =cut
 
 sub parse {
     my ($self, $ctx) = @_;
@@ -47,6 +60,13 @@ sub parse {
     );
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::KeywordHandling>
+#pod
+#pod =cut
 
 1;
 
@@ -60,6 +80,10 @@ __END__
 
 MooseX::Declare::Syntax::Keyword::Clean - Explicit namespace cleanups
 
+=head1 VERSION
+
+version 0.39
+
 =head1 DESCRIPTION
 
 This keyword will inject a call to L<namespace::clean> into its current
@@ -71,7 +95,7 @@ position.
 
   Object->parse(Object $context)
 
-This will inject a call to L<namespace::clean> C<-except => 'meta'> into
+This will inject a call to L<namespace::clean> C<< -except => 'meta' >> into
 the code at the position of the keyword.
 
 =head1 CONSUMES

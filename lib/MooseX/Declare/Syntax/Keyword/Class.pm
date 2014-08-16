@@ -1,16 +1,18 @@
 package MooseX::Declare::Syntax::Keyword::Class;
-{
-  $MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::Class::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Class declarations
-
+$MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.39';
 use Moose;
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::MooseSetup>
+#pod * L<MooseX::Declare::Syntax::RoleApplication>
+#pod * L<MooseX::Declare::Syntax::Extending>
+#pod
+#pod =cut
 
 with qw(
     MooseX::Declare::Syntax::MooseSetup
@@ -18,19 +20,60 @@ with qw(
     MooseX::Declare::Syntax::Extending
 );
 
+#pod =head1 MODIFIED METHODS
+#pod
+#pod =head2 imported_moose_symbols
+#pod
+#pod   List Object->imported_moose_symbols ()
+#pod
+#pod Extends the existing L<MooseX::Declare::Syntax::MooseSetup/imported_moose_symbols>
+#pod with C<extends>, C<has>, C<inner> and C<super>.
+#pod
+#pod =cut
 
 around imported_moose_symbols => sub { shift->(@_), qw( extends has inner super ) };
 
+#pod =method generate_export
+#pod
+#pod   CodeRef generate_export ()
+#pod
+#pod This will return a closure doing a call to L</make_anon_metaclass>.
+#pod
+#pod =cut
 
 sub generate_export { my $self = shift; sub { $self->make_anon_metaclass } }
 
 
+#pod =head2 auto_make_immutable
+#pod
+#pod   Bool Object->auto_make_immutable ()
+#pod
+#pod Is set to a true value, so classes are made immutable by default.
+#pod
+#pod =cut
 
 around auto_make_immutable => sub { 1 };
 
+#pod =head2 make_anon_metaclass
+#pod
+#pod   Object Object->make_anon_metaclass ()
+#pod
+#pod Returns an anonymous instance of L<Moose::Meta::Class>.
+#pod
+#pod =cut
 
 around make_anon_metaclass => sub { Moose::Meta::Class->create_anon_class };
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::Keyword::Role>
+#pod * L<MooseX::Declare::Syntax::RoleApplication>
+#pod * L<MooseX::Declare::Syntax::Extending>
+#pod * L<MooseX::Declare::Syntax::MooseSetup>
+#pod
+#pod =cut
 
 1;
 
@@ -43,6 +86,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::Keyword::Class - Class declarations
+
+=head1 VERSION
+
+version 0.39
 
 =head1 METHODS
 

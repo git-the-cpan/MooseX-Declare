@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::NoTabs 0.05
+# this test was generated with Dist::Zilla::Plugin::Test::NoTabs 0.08
 
 use Test::More 0.88;
 use Test::NoTabs;
@@ -30,7 +30,51 @@ my @files = (
     'lib/MooseX/Declare/Syntax/NamespaceHandling.pm',
     'lib/MooseX/Declare/Syntax/OptionHandling.pm',
     'lib/MooseX/Declare/Syntax/RoleApplication.pm',
-    'lib/MooseX/Declare/Util.pm'
+    'lib/MooseX/Declare/Util.pm',
+    't/00-report-prereqs.dd',
+    't/00-report-prereqs.t',
+    't/anon.t',
+    't/attribute_issues.t',
+    't/autoclean.t',
+    't/basic.t',
+    't/clean.t',
+    't/import.t',
+    't/inner_keywords.t',
+    't/lib/Affe.pm',
+    't/lib/Foo.pm',
+    't/lib/ParameterizedRole.pm',
+    't/lib/Tiger.pm',
+    't/lib/WithMethod.pm',
+    't/lib/WithNewline.pm',
+    't/manual_namespace.t',
+    't/meta_should_be_signature.t',
+    't/method_as_default.t',
+    't/modifier_order.t',
+    't/modifiers.t',
+    't/modify_with_invocant.t',
+    't/nested_anonymous_classes.t',
+    't/nesting.t',
+    't/optional_positional.t',
+    't/override_attribute_from_role.t',
+    't/recipes/basics/001_point.t',
+    't/recipes/basics/002_bank_account.t',
+    't/recipes/basics/006_augment_inner.t',
+    't/role_application.t',
+    't/role_parameterized.t',
+    't/segfault_syntax_error.t',
+    't/zzz-check-breaks.t',
+    'xt/author/00-compile.t',
+    'xt/release/changes_has_content.t',
+    'xt/release/clean-namespaces.t',
+    'xt/release/cpan-changes.t',
+    'xt/release/distmeta.t',
+    'xt/release/eol.t',
+    'xt/release/kwalitee.t',
+    'xt/release/minimum-version.t',
+    'xt/release/mojibake.t',
+    'xt/release/no-tabs.t',
+    'xt/release/pod-syntax.t',
+    'xt/release/portability.t'
 );
 
 notabs_ok($_) foreach @files;

@@ -1,12 +1,6 @@
 package MooseX::Declare::Syntax::Keyword::Namespace;
-{
-  $MooseX::Declare::Syntax::Keyword::Namespace::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::Namespace::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Declare outer namespace
-
+$MooseX::Declare::Syntax::Keyword::Namespace::VERSION = '0.39';
 use Moose;
 use Carp qw( confess );
 
@@ -14,11 +8,47 @@ use MooseX::Declare::Util qw( outer_stack_push outer_stack_peek );
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   use MooseX::Declare;
+#pod
+#pod   namespace Foo::Bar;
+#pod
+#pod   class ::Baz extends ::Qux with ::Fnording {
+#pod       ...
+#pod   }
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod The C<namespace> keyword allows you to declare an outer namespace under
+#pod which other namespaced constructs can be nested. The L</SYNOPSIS> is
+#pod effectively the same as
+#pod
+#pod   use MooseX::Declare;
+#pod
+#pod   class Foo::Bar::Baz extends Foo::Bar::Qux with Foo::Bar::Fnording {
+#pod       ...
+#pod   }
+#pod
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::KeywordHandling>
+#pod
+#pod =cut
 
 with qw(
     MooseX::Declare::Syntax::KeywordHandling
 );
 
+#pod =method parse
+#pod
+#pod   Object->parse(Object $context)
+#pod
+#pod Will skip the declarator, parse the namespace and push the namespace
+#pod in the file package stack.
+#pod
+#pod =cut
 
 sub parse {
     my ($self, $ctx) = @_;
@@ -42,6 +72,12 @@ sub parse {
     outer_stack_push $ctx->caller_file, $namespace;
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod
+#pod =cut
 
 1;
 
@@ -54,6 +90,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::Keyword::Namespace - Declare outer namespace
+
+=head1 VERSION
+
+version 0.39
 
 =head1 SYNOPSIS
 

@@ -1,18 +1,23 @@
 package MooseX::Declare::Syntax::RoleApplication;
-{
-  $MooseX::Declare::Syntax::RoleApplication::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::RoleApplication::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Handle user specified roles
-
+$MooseX::Declare::Syntax::RoleApplication::VERSION = '0.39';
 use Moose::Role;
 
 use aliased 'MooseX::Declare::Context::Namespaced';
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This role extends L<MooseX::Declare::Syntax::OptionHandling> and provides
+#pod a C<with|/add_with_option_customizations> option.
+#pod
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::OptionHandling>
+#pod
+#pod =cut
 
 with qw(
     MooseX::Declare::Syntax::OptionHandling
@@ -20,6 +25,18 @@ with qw(
 
 around context_traits => sub { shift->(@_), Namespaced };
 
+#pod =method add_with_option_customizations
+#pod
+#pod   Object->add_with_option_customizations (
+#pod       Object   $context,
+#pod       Str      $package,
+#pod       ArrayRef $roles,
+#pod       HashRef  $options
+#pod   )
+#pod
+#pod This will add a call to C<with> in the scope code.
+#pod
+#pod =cut
 
 sub add_with_option_customizations {
     my ($self, $ctx, $package, $roles) = @_;
@@ -37,6 +54,13 @@ sub add_with_option_customizations {
     return 1;
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::OptionHandling>
+#pod
+#pod =cut
 
 1;
 
@@ -49,6 +73,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::RoleApplication - Handle user specified roles
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

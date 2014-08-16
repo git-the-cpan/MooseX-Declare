@@ -40,7 +40,7 @@ isa_ok($savings_account, 'BankAccount');
 
 is($savings_account->balance, 250, '... got the right savings balance');
 is( exception {
-	$savings_account->withdraw(50);
+    $savings_account->withdraw(50);
 }, undef, '... withdrew from savings successfully');
 is($savings_account->balance, 200, '... got the right savings balance after withdrawl');
 
@@ -60,13 +60,13 @@ is($savings_account->balance, 350, '... got the right savings balance after depo
     is($checking_account->balance, 100, '... got the right checkings balance');
 
     is( exception {
-    	$checking_account->withdraw(50);
+        $checking_account->withdraw(50);
     }, undef, '... withdrew from checking successfully');
     is($checking_account->balance, 50, '... got the right checkings balance after withdrawl');
     is($savings_account->balance, 350, '... got the right savings balance after checking withdrawl (no overdraft)');
 
     is( exception {
-    	$checking_account->withdraw(200);
+        $checking_account->withdraw(200);
     }, undef, '... withdrew from checking successfully');
     is($checking_account->balance, 0, '... got the right checkings balance after withdrawl');
     is($savings_account->balance, 200, '... got the right savings balance after overdraft withdrawl');
@@ -85,12 +85,12 @@ is($savings_account->balance, 350, '... got the right savings balance after depo
     is($checking_account->balance, 100, '... got the right checkings balance');
 
     is( exception {
-    	$checking_account->withdraw(50);
+        $checking_account->withdraw(50);
     }, undef, '... withdrew from checking successfully');
     is($checking_account->balance, 50, '... got the right checkings balance after withdrawl');
 
     isnt( exception {
-    	$checking_account->withdraw(200);
+        $checking_account->withdraw(200);
     }, undef, '... withdrawl failed due to attempted overdraft');
     is($checking_account->balance, 50, '... got the right checkings balance after withdrawl failure');
 }

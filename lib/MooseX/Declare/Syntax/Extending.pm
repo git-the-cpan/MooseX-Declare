@@ -1,18 +1,22 @@
 package MooseX::Declare::Syntax::Extending;
-{
-  $MooseX::Declare::Syntax::Extending::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Extending::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Extending with superclasses
-
+$MooseX::Declare::Syntax::Extending::VERSION = '0.39';
 use Moose::Role;
 
 use aliased 'MooseX::Declare::Context::Namespaced';
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod Extends a class by a specified C<extends> option.
+#pod
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::OptionHandling>
+#pod
+#pod =cut
 
 with qw(
     MooseX::Declare::Syntax::OptionHandling
@@ -20,6 +24,19 @@ with qw(
 
 around context_traits => sub { shift->(@_), Namespaced };
 
+#pod =method add_extends_option_customizations
+#pod
+#pod   Object->add_extends_option_customizations (
+#pod       Object   $ctx,
+#pod       Str      $package,
+#pod       ArrayRef $superclasses,
+#pod       HashRef  $options
+#pod   )
+#pod
+#pod This will add a code part that will call C<extends> with the C<$superclasses>
+#pod as arguments.
+#pod
+#pod =cut
 
 sub add_extends_option_customizations {
     my ($self, $ctx, $package, $superclasses) = @_;
@@ -36,6 +53,14 @@ sub add_extends_option_customizations {
     return 1;
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::Keyword::Class>
+#pod * L<MooseX::Declare::Syntax::OptionHandling>
+#pod
+#pod =cut
 
 1;
 
@@ -48,6 +73,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::Extending - Extending with superclasses
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

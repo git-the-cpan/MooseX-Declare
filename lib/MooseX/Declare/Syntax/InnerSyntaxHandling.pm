@@ -1,26 +1,51 @@
 package MooseX::Declare::Syntax::InnerSyntaxHandling;
-{
-  $MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::InnerSyntaxHandling::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Keywords inside blocks
-
+$MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.39';
 use Moose::Role;
 
 use MooseX::Declare::Util qw( outer_stack_push );
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This role allows you to setup keyword handlers that are only available
+#pod inside blocks or other scoping environments.
+#pod
+#pod =head1 REQUIRED METHODS
+#pod
+#pod =head2 get_identifier
+#pod
+#pod   Str get_identifier ()
+#pod
+#pod Required to return the name of the identifier of the current handler.
+#pod
+#pod =cut
 
 requires qw(
     get_identifier
 );
 
+#pod =method default_inner
+#pod
+#pod   ArrayRef[Object] Object->default_inner ()
+#pod
+#pod Returns an empty C<ArrayRef> by default. If you want to setup additional
+#pod keywords you will have to C<around> this method.
+#pod
+#pod =cut
 
 sub default_inner { [] }
 
+#pod =head1 MODIFIED METHODS
+#pod
+#pod =head2 setup_for
+#pod
+#pod   Object->setup_for(ClassName $class, %args)
+#pod
+#pod After the keyword is setup inside itself, this will call L</setup_inner_for>.
+#pod
+#pod =cut
 
 after setup_for => sub {
     my ($self, $setup_class, %args) = @_;
@@ -34,6 +59,13 @@ after setup_for => sub {
     }
 };
 
+#pod =method setup_inner_for
+#pod
+#pod   Object->setup_inner_for(ClassName $class, %args)
+#pod
+#pod Sets up all handlers in the inner class.
+#pod
+#pod =cut
 
 sub setup_inner_for {
     my ($self, $setup_class, %args) = @_;
@@ -49,6 +81,14 @@ sub setup_inner_for {
     }
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::NamespaceHandling>
+#pod * L<MooseX::Declare::Syntax::MooseSetup>
+#pod
+#pod =cut
 
 1;
 
@@ -61,6 +101,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::InnerSyntaxHandling - Keywords inside blocks
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

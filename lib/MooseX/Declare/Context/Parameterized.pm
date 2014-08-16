@@ -1,17 +1,26 @@
 package MooseX::Declare::Context::Parameterized;
-{
-  $MooseX::Declare::Context::Parameterized::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Context::Parameterized::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: context for parsing optionally parameterized statements
-
+$MooseX::Declare::Context::Parameterized::VERSION = '0.39';
 use Moose::Role;
 use MooseX::Types::Moose qw/Str HashRef/;
 
 use namespace::autoclean;
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This context trait will add optional parameterization functionality to the
+#pod context.
+#pod
+#pod =attr parameter_signature
+#pod
+#pod This will be set when the C<strip_parameter_signature> method is called and it
+#pod was able to extract a list of parameterisations.
+#pod
+#pod =method has_parameter_signature
+#pod
+#pod Predicate method for the C<parameter_signature> attribute.
+#pod
+#pod =cut
 
 has parameter_signature => (
     is        => 'rw',
@@ -19,6 +28,16 @@ has parameter_signature => (
     predicate => 'has_parameter_signature',
 );
 
+#pod =method add_parameter
+#pod
+#pod Allows storing parameters extracted from C<parameter_signature> to be used
+#pod later on.
+#pod
+#pod =method get_parameters
+#pod
+#pod Returns all previously added parameters.
+#pod
+#pod =cut
 
 has parameters => (
     traits    => ['Hash'],
@@ -30,6 +49,15 @@ has parameters => (
     },
 );
 
+#pod =method strip_parameter_signature
+#pod
+#pod   Maybe[Str] Object->strip_parameter_signature()
+#pod
+#pod This method is intended to parse the main namespace of a namespaced keyword.
+#pod It will use L<Devel::Declare::Context::Simple>s C<strip_word> method and store
+#pod the result in the L</namespace> attribute if true.
+#pod
+#pod =cut
 
 sub strip_parameter_signature {
     my ($self) = @_;
@@ -42,6 +70,13 @@ sub strip_parameter_signature {
     return $signature;
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Context>
+#pod
+#pod =cut
 
 1;
 
@@ -54,6 +89,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Context::Parameterized - context for parsing optionally parameterized statements
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

@@ -1,25 +1,51 @@
 package MooseX::Declare::Syntax::OptionHandling;
-{
-  $MooseX::Declare::Syntax::OptionHandling::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::OptionHandling::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Option parser dispatching
-
+$MooseX::Declare::Syntax::OptionHandling::VERSION = '0.39';
 use Moose::Role;
 
 use Carp qw( croak );
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This role will call a C<add_foo_option_customization> for every C<foo> option
+#pod that is discovered.
+#pod
+#pod =head1 REQUIRED METHODS
+#pod
+#pod =head2 get_identifier
+#pod
+#pod   Str Object->get_identifier ()
+#pod
+#pod This must return the name of the current keyword's identifier.
+#pod
+#pod =cut
 
 requires qw( get_identifier );
 
+#pod =method ignored_options
+#pod
+#pod   List[Str] Object->ignored_options ()
+#pod
+#pod This method returns a list of option names that won't be dispatched. By default
+#pod this only contains the C<is> option.
+#pod
+#pod =cut
 
 sub ignored_options { qw( is ) }
 
 
+#pod =head1 MODIFIED METHODS
+#pod
+#pod =head2 add_optional_customizations
+#pod
+#pod   Object->add_optional_customizations (Object $context, Str $package, HashRef $options)
+#pod
+#pod This will dispatch to the respective C<add_*_option_customization> method for option
+#pod handling unless the option is listed in the L</ignored_options>.
+#pod
+#pod =cut
 
 after add_optional_customizations => sub {
     my ($self, $ctx, $package) = @_;
@@ -48,6 +74,13 @@ after add_optional_customizations => sub {
     return 1;
 };
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::NamespaceHandling>
+#pod
+#pod =cut
 
 1;
 
@@ -60,6 +93,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::OptionHandling - Option parser dispatching
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

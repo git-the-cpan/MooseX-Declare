@@ -1,25 +1,60 @@
 package MooseX::Declare::Syntax::Keyword::Method;
-{
-  $MooseX::Declare::Syntax::Keyword::Method::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::Method::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Handle method declarations
-
+$MooseX::Declare::Syntax::Keyword::Method::VERSION = '0.39';
 use Moose;
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This role is an extension of L<MooseX::Declare::Syntax::MethodDeclaration>
+#pod that allows you to install keywords that declare methods.
+#pod
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::MethodDeclaration>
+#pod
+#pod =cut
 
 with 'MooseX::Declare::Syntax::MethodDeclaration';
 
+#pod =method register_method_declaration
+#pod
+#pod   Object->register_method_declaration (Object $metaclass, Str $name, Object $method)
+#pod
+#pod This method required by the method declaration role will register the finished
+#pod method object via the C<< $metaclass->add_method >> method.
+#pod
+#pod   MethodModifier->new(
+#pod       identifier           => 'around',
+#pod       modifier_type        => 'around',
+#pod       prototype_injections => {
+#pod           declarator => 'around',
+#pod           injections => [ 'CodeRef $orig' ],
+#pod       },
+#pod   );
+#pod
+#pod This will mean that the signature C<(Str $foo)> will become
+#pod C<CodeRef $orig: Object $self, Str $foo> and and C<()> will become
+#pod C<CodeRef $orig: Object $self>.
+#pod
+#pod =cut
 
 sub register_method_declaration {
     my ($self, $meta, $name, $method) = @_;
     return $meta->add_method($name, $method);
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::MooseSetup>
+#pod * L<MooseX::Declare::Syntax::MethodDeclaration>
+#pod * L<MooseX::Method::Signatures>
+#pod
+#pod =cut
 
 1;
 
@@ -32,6 +67,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::Keyword::Method - Handle method declarations
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

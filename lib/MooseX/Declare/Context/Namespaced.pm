@@ -1,12 +1,6 @@
 package MooseX::Declare::Context::Namespaced;
-{
-  $MooseX::Declare::Context::Namespaced::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Context::Namespaced::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Namespaced context
-
+$MooseX::Declare::Context::Namespaced::VERSION = '0.39';
 use Moose::Role;
 
 use Carp                  qw( croak );
@@ -14,6 +8,17 @@ use MooseX::Declare::Util qw( outer_stack_peek );
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This context trait will add namespace functionality to the context.
+#pod
+#pod =attr namespace
+#pod
+#pod This will be set when the C<strip_namespace> method is called and the
+#pod namespace wasn't anonymous. It will contain the specified namespace, not
+#pod the fully qualified one.
+#pod
+#pod =cut
 
 has namespace => (
     is          => 'rw',
@@ -21,6 +26,15 @@ has namespace => (
 );
 
 
+#pod =method strip_namespace
+#pod
+#pod   Maybe[Str] Object->strip_namespace()
+#pod
+#pod This method is intended to parse the main namespace of a namespaced keyword.
+#pod It will use L<Devel::Declare::Context::Simple>s C<strip_word> method and store
+#pod the result in the L</namespace> attribute if true.
+#pod
+#pod =cut
 
 sub strip_namespace {
     my ($self) = @_;
@@ -33,6 +47,15 @@ sub strip_namespace {
     return $namespace;
 }
 
+#pod =method qualify_namespace
+#pod
+#pod   Str Object->qualify_namespace(Str $namespace)
+#pod
+#pod If the C<$namespace> passed it begins with a C<::>, it will be prefixed with
+#pod the outer namespace in the file. If there is no outer namespace, an error
+#pod will be thrown.
+#pod
+#pod =cut
 
 sub qualify_namespace {
     my ($self, $namespace) = @_;
@@ -48,6 +71,13 @@ sub qualify_namespace {
     return $outer . $namespace;
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Context>
+#pod
+#pod =cut
 
 1;
 
@@ -60,6 +90,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Context::Namespaced - Namespaced context
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

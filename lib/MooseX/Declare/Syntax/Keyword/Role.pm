@@ -1,12 +1,6 @@
 package MooseX::Declare::Syntax::Keyword::Role;
-{
-  $MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::Role::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Role declarations
-
+$MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.39';
 use Moose;
 use Moose::Util qw(does_role find_meta);
 use aliased 'Parse::Method::Signatures' => 'PMS';
@@ -17,15 +11,39 @@ use aliased 'MooseX::Declare::Syntax::MethodDeclaration::Parameterized', 'Parame
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::MooseSetup>
+#pod * L<MooseX::Declare::Syntax::RoleApplication>
+#pod
+#pod =cut
 
 with qw(
     MooseX::Declare::Syntax::MooseSetup
     MooseX::Declare::Syntax::RoleApplication
 );
 
+#pod =head1 MODIFIED METHODS
+#pod
+#pod =head2 imported_moose_symbols
+#pod
+#pod   List Object->imported_moose_symbols ()
+#pod
+#pod Extends the existing L<MooseX::Declare::Syntax::MooseSetup/imported_moose_symbols>
+#pod with C<requires>, C<extends>, C<has>, C<inner> and C<super>.
+#pod
+#pod =cut
 
 around imported_moose_symbols => sub { shift->(@_), qw( requires excludes extends has inner super ) };
 
+#pod =head2 import_symbols_from
+#pod
+#pod   Str Object->import_symbols_from ()
+#pod
+#pod Will return L<Moose::Role> instead of the default L<Moose>.
+#pod
+#pod =cut
 
 around import_symbols_from => sub {
     my ($next, $self, $ctx) = @_;
@@ -34,6 +52,13 @@ around import_symbols_from => sub {
         : 'Moose::Role';
 };
 
+#pod =head2 make_anon_metaclass
+#pod
+#pod   Object Object->make_anon_metaclass ()
+#pod
+#pod This will return an anonymous instance of L<Moose::Meta::Role>.
+#pod
+#pod =cut
 
 around make_anon_metaclass => sub { Moose::Meta::Role->create_anon_role };
 
@@ -51,6 +76,13 @@ around default_inner => sub {
     return $inner;
 };
 
+#pod =method generate_export
+#pod
+#pod   CodeRef Object->generate_export ()
+#pod
+#pod Returns a closure with a call to L</make_anon_metaclass>.
+#pod
+#pod =cut
 
 sub generate_export { my $self = shift; sub { $self->make_anon_metaclass } }
 
@@ -117,6 +149,15 @@ after handle_post_parsing => sub {
     });
 };
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::Keyword::Class>
+#pod * L<MooseX::Declare::Syntax::RoleApplication>
+#pod * L<MooseX::Declare::Syntax::MooseSetup>
+#pod
+#pod =cut
 
 1;
 
@@ -129,6 +170,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::Keyword::Role - Role declarations
+
+=head1 VERSION
+
+version 0.39
 
 =head1 METHODS
 

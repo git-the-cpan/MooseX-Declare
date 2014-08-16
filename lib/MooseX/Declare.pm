@@ -2,15 +2,10 @@ use strict;
 use warnings;
 
 package MooseX::Declare;
-{
-  $MooseX::Declare::VERSION = '0.38';
-}
-# git description: 0.37-9-g548a1bd
-
-BEGIN {
-  $MooseX::Declare::AUTHORITY = 'cpan:FLORA';
-}
+# git description: 0.38-13-g6688142
+$MooseX::Declare::VERSION = '0.39';
 # ABSTRACT: Declarative syntax for Moose
+# KEYWORDS: moose extension declaration syntax sugar method class
 
 use aliased 'MooseX::Declare::Syntax::Keyword::Class',      'ClassKeyword';
 use aliased 'MooseX::Declare::Syntax::Keyword::Role',       'RoleKeyword';
@@ -37,6 +32,235 @@ sub keywords {
     NamespaceKeyword->new(identifier => 'namespace'),
 }
 
+#pod =head1 SYNOPSIS
+#pod
+#pod     use MooseX::Declare;
+#pod
+#pod     class BankAccount {
+#pod         has 'balance' => ( isa => 'Num', is => 'rw', default => 0 );
+#pod
+#pod         method deposit (Num $amount) {
+#pod             $self->balance( $self->balance + $amount );
+#pod         }
+#pod
+#pod         method withdraw (Num $amount) {
+#pod             my $current_balance = $self->balance();
+#pod             ( $current_balance >= $amount )
+#pod                 || confess "Account overdrawn";
+#pod             $self->balance( $current_balance - $amount );
+#pod         }
+#pod     }
+#pod
+#pod     class CheckingAccount extends BankAccount {
+#pod         has 'overdraft_account' => ( isa => 'BankAccount', is => 'rw' );
+#pod
+#pod         before withdraw (Num $amount) {
+#pod             my $overdraft_amount = $amount - $self->balance();
+#pod             if ( $self->overdraft_account && $overdraft_amount > 0 ) {
+#pod                 $self->overdraft_account->withdraw($overdraft_amount);
+#pod                 $self->deposit($overdraft_amount);
+#pod             }
+#pod         }
+#pod     }
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This module provides syntactic sugar for Moose, the postmodern object system
+#pod for Perl 5. When used, it sets up the C<class> and C<role> keywords.
+#pod
+#pod B<Note:> Please see the L</WARNING> section below!
+#pod
+#pod =head1 KEYWORDS
+#pod
+#pod =head2 class
+#pod
+#pod     class Foo { ... }
+#pod
+#pod     my $anon_class = class { ... };
+#pod
+#pod Declares a new class. The class can be either named or anonymous, depending on
+#pod whether or not a classname is given. Within the class definition Moose and
+#pod L<MooseX::Method::Signatures> are set up automatically in addition to the other
+#pod keywords described in this document. At the end of the definition the class
+#pod will be made immutable. namespace::autoclean is injected to clean up Moose and
+#pod other imports for you.
+#pod
+#pod Because of the way the options are parsed, you cannot have a class named "is",
+#pod "with" or "extends".
+#pod
+#pod It's possible to specify options for classes:
+#pod
+#pod =over 4
+#pod
+#pod =item extends
+#pod
+#pod     class Foo extends Bar { ... }
+#pod
+#pod Sets a superclass for the class being declared.
+#pod
+#pod =item with
+#pod
+#pod     class Foo with Role             { ... }
+#pod     class Foo with Role1 with Role2 { ... }
+#pod     class Foo with (Role1, Role2)   { ... }
+#pod
+#pod Applies a role or roles to the class being declared.
+#pod
+#pod =item is mutable
+#pod
+#pod     class Foo is mutable { ... }
+#pod
+#pod Causes the class not to be made immutable after its definition.
+#pod
+#pod Options can also be provided for anonymous classes using the same syntax:
+#pod
+#pod     my $meta_class = class with Role;
+#pod
+#pod =back
+#pod
+#pod =head2 role
+#pod
+#pod     role Foo { ... }
+#pod
+#pod     my $anon_role = role { ... };
+#pod
+#pod Declares a new role. The role can be either named or anonymous, depending on
+#pod whether or not a name is given. Within the role definition Moose::Role and
+#pod MooseX::Method::Signatures are set up automatically in addition to the other
+#pod keywords described in this document. Again, namespace::autoclean is injected to
+#pod clean up Moose::Role and other imports for you.
+#pod
+#pod It's possible to specify options for roles:
+#pod
+#pod =over 4
+#pod
+#pod =item with
+#pod
+#pod     role Foo with Bar { ... }
+#pod
+#pod Applies a role to the role being declared.
+#pod
+#pod =back
+#pod
+#pod =head2 before / after / around / override / augment
+#pod
+#pod     before   foo ($x, $y, $z) { ... }
+#pod     after    bar ($x, $y, $z) { ... }
+#pod     around   baz ($x, $y, $z) { ... }
+#pod     override moo ($x, $y, $z) { ... }
+#pod     augment  kuh ($x, $y, $z) { ... }
+#pod
+#pod Add a method modifier. Those work like documented in L<Moose|Moose>, except for
+#pod the slightly nicer syntax and the method signatures, which work like documented
+#pod in L<MooseX::Method::Signatures|MooseX::Method::Signatures>.
+#pod
+#pod For the C<around> modifier an additional argument called C<$orig> is
+#pod automatically set up as the invocant for the method.
+#pod
+#pod =head2 clean
+#pod
+#pod Sometimes you don't want the automatic cleaning the C<class> and C<role>
+#pod keywords provide using namespace::autoclean. In those cases you can specify the
+#pod C<dirty> trait for your class or role:
+#pod
+#pod     use MooseX::Declare;
+#pod     class Foo is dirty { ... }
+#pod
+#pod This will prevent cleaning of your namespace, except for the keywords imported
+#pod from C<Moose> or C<Moose::Role>. Additionally, a C<clean> keyword is provided,
+#pod which allows you to explicitly clean all functions that were defined prior to
+#pod calling C<clean>. Here's an example:
+#pod
+#pod     use MooseX::Declare;
+#pod     class Foo is dirty {
+#pod         sub helper_function { ... }
+#pod         clean;
+#pod         method foo ($stuff) { ...; return helper_function($stuff); }
+#pod     }
+#pod
+#pod With that, the helper function won't be available as a method to a user of your
+#pod class, but you're still able to use it inside your class.
+#pod
+#pod =head1 NOTE ON IMPORTS
+#pod
+#pod When creating a class with MooseX::Declare like:
+#pod
+#pod     use MooseX::Declare;
+#pod     class Foo { ... }
+#pod
+#pod What actually happens is something like this:
+#pod
+#pod     {
+#pod         package Foo;
+#pod         use Moose;
+#pod         use namespace::autoclean;
+#pod         ...
+#pod         __PACKAGE__->meta->make_immutable;
+#pod     }
+#pod
+#pod So if you declare imports outside the class, the symbols get imported into the
+#pod C<main::> namespace, not the class' namespace. The symbols then cannot be called
+#pod from within the class:
+#pod
+#pod     use MooseX::Declare;
+#pod     use Data::Dump qw/dump/;
+#pod     class Foo {
+#pod         method dump($value) { return dump($value) } # Data::Dump::dump IS NOT in Foo::
+#pod         method pp($value)   { $self->dump($value) } # an alias for our dump method
+#pod     }
+#pod
+#pod To solve this, only import MooseX::Declare outside the class definition
+#pod (because you have to). Make all other imports inside the class definition.
+#pod
+#pod     use MooseX::Declare;
+#pod     class Foo {
+#pod         use Data::Dump qw/dump/;
+#pod         method dump($value) { return dump($value) } # Data::Dump::dump IS in Foo::
+#pod         method pp($value)   { $self->dump($value) } # an alias for our dump method
+#pod     }
+#pod
+#pod     Foo->new->dump($some_value);
+#pod     Foo->new->pp($some_value);
+#pod
+#pod B<NOTE> that the import C<Data::Dump::dump()> and the method C<Foo::dump()>,
+#pod although having the same name, do not conflict with each other, because the
+#pod imported C<dump> function will be cleaned during compile time, so only the
+#pod method remains there at run time. If you want to do more esoteric things with
+#pod imports, have a look at the C<clean> keyword and the C<dirty> trait.
+#pod
+#pod =head1 WARNING
+#pod
+#pod =for comment rafl agreed we should have a warning, and mst wrote this:
+#pod
+#pod B<Warning:> MooseX::Declare is based on L<Devel::Declare>, a giant bag of crack
+#pod originally implemented by mst with the goal of upsetting the perl core
+#pod developers so much by its very existence that they implemented proper
+#pod keyword handling in the core.
+#pod
+#pod As of perl5 version 14, this goal has been achieved, and modules such
+#pod as L<Devel::CallParser>, L<Function::Parameters>, and L<Keyword::Simple> provide
+#pod mechanisms to mangle perl syntax that don't require hallucinogenic
+#pod drugs to interpret the error messages they produce.
+#pod
+#pod If you want to use declarative syntax in new code, please for the love
+#pod of kittens get yourself a recent perl and look at L<Moops> instead.
+#pod
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<Moose>
+#pod * L<Moose::Role>
+#pod * L<MooseX::Method::Signatures>
+#pod * L<namespace::autoclean>
+#pod * vim syntax: L<http://www.vim.org/scripts/script.php?script_id=2526>
+#pod * emacs syntax: L<http://github.com/jrockway/cperl-mode>
+#pod * Geany syntax + notes: L<http://www.cattlegrid.info/blog/2009/09/moosex-declare-geany-syntax.html>
+#pod * L<Devel::CallParser>
+#pod * L<Function::Parameters>
+#pod * L<Keyword::Simple>
+#pod * L<Moops>
+#pod
+#pod =cut
 
 
 1;
@@ -50,6 +274,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare - Declarative syntax for Moose
+
+=head1 VERSION
+
+version 0.39
 
 =head1 SYNOPSIS
 
@@ -320,35 +548,9 @@ Florian Ragwitz <rafl@debian.org>
 
 =head1 CONTRIBUTORS
 
+=for stopwords Karen Etheridge Ash Berlin Robert 'phaylon' Sedlacek Piers Cawley Nelo Onyiah Nick Perez Chas. J. Owens IV Yanick Champoux Stevan Little Devin Austin leedo Chris Prather Dave Rolsky Frank Wiegand Hans Dieter Pearcey Justin Hunter Matt Kraai Michele Beltrame Rafael Kitover Tomas Doran
+
 =over 4
-
-=item *
-
-Ash Berlin <ash_github@firemirror.com>
-
-=item *
-
-Chas. J. Owens IV <chas.owens@gmail.com>
-
-=item *
-
-Chris Prather <chris@prather.org>
-
-=item *
-
-Dave Rolsky <autarch@urth.org>
-
-=item *
-
-Devin Austin <dhoss@cpan.org>
-
-=item *
-
-Hans Dieter Pearcey <hdp@cpan.org>
-
-=item *
-
-Justin Hunter <justin.d.hunter@gmail.com>
 
 =item *
 
@@ -356,11 +558,15 @@ Karen Etheridge <ether@cpan.org>
 
 =item *
 
-Matt Kraai <kraai@ftbfs.org>
+Ash Berlin <ash_github@firemirror.com>
 
 =item *
 
-Michele Beltrame <arthas@cpan.org>
+Robert 'phaylon' Sedlacek <rs@474.at>
+
+=item *
+
+Piers Cawley <pdcawley@bofh.org.uk>
 
 =item *
 
@@ -372,23 +578,7 @@ Nick Perez <nperez@cpan.org>
 
 =item *
 
-Piers Cawley <pdcawley@bofh.org.uk>
-
-=item *
-
-Rafael Kitover <rkitover@io.com>
-
-=item *
-
-Robert 'phaylon' Sedlacek <rs@474.at>
-
-=item *
-
-Stevan Little <stevan.little@iinteractive.com>
-
-=item *
-
-Tomas Doran <bobtfish@bobtfish.net>
+Chas. J. Owens IV <chas.owens@gmail.com>
 
 =item *
 
@@ -396,7 +586,51 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =item *
 
+Stevan Little <stevan.little@iinteractive.com>
+
+=item *
+
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
 leedo <lee@laylward.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Frank Wiegand <fwie@cpan.org>
+
+=item *
+
+Hans Dieter Pearcey <hdp@cpan.org>
+
+=item *
+
+Justin Hunter <justin.d.hunter@gmail.com>
+
+=item *
+
+Matt Kraai <kraai@ftbfs.org>
+
+=item *
+
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Tomas Doran <bobtfish@bobtfish.net>
 
 =back
 

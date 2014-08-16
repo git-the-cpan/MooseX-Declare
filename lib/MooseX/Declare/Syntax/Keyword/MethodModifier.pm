@@ -1,21 +1,38 @@
 package MooseX::Declare::Syntax::Keyword::MethodModifier;
-{
-  $MooseX::Declare::Syntax::Keyword::MethodModifier::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Syntax::Keyword::MethodModifier::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Handle method modifier declarations
-
+$MooseX::Declare::Syntax::Keyword::MethodModifier::VERSION = '0.39';
 use Moose;
 use Moose::Util;
 use Moose::Util::TypeConstraints;
 
 use namespace::clean -except => 'meta';
 
+#pod =head1 DESCRIPTION
+#pod
+#pod Allows the implementation of method modification handlers like C<around> and
+#pod C<before>.
+#pod
+#pod =head1 CONSUMES
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare::Syntax::MethodDeclaration>
+#pod
+#pod =cut
 
 with 'MooseX::Declare::Syntax::MethodDeclaration';
 
+#pod =attr modifier_type
+#pod
+#pod A required string that is one of:
+#pod
+#pod =for :list
+#pod * around
+#pod * after
+#pod * before
+#pod * override
+#pod * augment
+#pod
+#pod =cut
 
 has modifier_type => (
     is          => 'rw',
@@ -23,12 +40,30 @@ has modifier_type => (
     required    => 1,
 );
 
+#pod =method register_method_declaration
+#pod
+#pod   Object->register_method_declaration (Object $metaclass, Str $name, Object $method)
+#pod
+#pod This will add the method modifier to the C<$metaclass> via L<Moose::Util>s
+#pod C<add_method_modifier>, whose return value will also be returned from this
+#pod method.
+#pod
+#pod =cut
 
 sub register_method_declaration {
     my ($self, $meta, $name, $method) = @_;
     return Moose::Util::add_method_modifier($meta->name, $self->modifier_type, [$name, $method->body]);
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod * L<MooseX::Declare::Syntax::MooseSetup>
+#pod * L<MooseX::Declare::Syntax::MethodDeclaration>
+#pod * L<MooseX::Method::Signatures>
+#pod
+#pod =cut
 
 1;
 
@@ -41,6 +76,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Syntax::Keyword::MethodModifier - Handle method modifier declarations
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 

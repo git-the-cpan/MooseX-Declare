@@ -2,14 +2,8 @@ use strict;
 use warnings;
 
 package MooseX::Declare::Util;
-{
-  $MooseX::Declare::Util::VERSION = '0.38';
-}
-BEGIN {
-  $MooseX::Declare::Util::AUTHORITY = 'cpan:FLORA';
-}
 # ABSTRACT: Common declarative utility functions
-
+$MooseX::Declare::Util::VERSION = '0.39';
 use Sub::Exporter -setup => {
     exports => [qw(
         outer_stack_push
@@ -18,10 +12,25 @@ use Sub::Exporter -setup => {
     )],
 };
 
+#pod =head1 DESCRIPTION
+#pod
+#pod This exporter collection contains the commonly used functions in
+#pod L<MooseX::Declare>.
+#pod
+#pod All functions in this package will be exported upon request.
+#pod
+#pod =cut
 
 my %OuterStack;
 
 
+#pod =func outer_stack_push
+#pod
+#pod   outer_stack_push (Str $file, Str $value)
+#pod
+#pod Pushes the C<$value> on the internal stack for the file C<$file>.
+#pod
+#pod =cut
 
 sub outer_stack_push {
     my ($file, $value) = @_;
@@ -30,6 +39,13 @@ sub outer_stack_push {
     return $value;
 }
 
+#pod =func outer_stack_pop
+#pod
+#pod   outer_stack_pop (Str $file)
+#pod
+#pod Removes one item from the internal stack of the file C<$file>.
+#pod
+#pod =cut
 
 sub outer_stack_pop {
     my ($file) = @_;
@@ -39,6 +55,14 @@ sub outer_stack_pop {
     return pop @{ $OuterStack{ $file } };
 }
 
+#pod =func outer_stack_peek
+#pod
+#pod   outer_stack_peek (Str $file)
+#pod
+#pod Returns the topmost item in the internal stack for C<$file> without removing
+#pod it from the stack.
+#pod
+#pod =cut
 
 sub outer_stack_peek {
     my ($file) = @_;
@@ -48,6 +72,12 @@ sub outer_stack_peek {
     return $OuterStack{ $file }[-1];
 }
 
+#pod =head1 SEE ALSO
+#pod
+#pod =for :list
+#pod * L<MooseX::Declare>
+#pod
+#pod =cut
 
 1;
 
@@ -60,6 +90,10 @@ __END__
 =head1 NAME
 
 MooseX::Declare::Util - Common declarative utility functions
+
+=head1 VERSION
+
+version 0.39
 
 =head1 DESCRIPTION
 
