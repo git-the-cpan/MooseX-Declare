@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::RoleApplication;
 # ABSTRACT: Handle user specified roles
-$MooseX::Declare::Syntax::RoleApplication::VERSION = '0.39';
+$MooseX::Declare::Syntax::RoleApplication::VERSION = '0.40';
 use Moose::Role;
 
 use aliased 'MooseX::Declare::Context::Namespaced';
@@ -76,7 +76,7 @@ MooseX::Declare::Syntax::RoleApplication - Handle user specified roles
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 

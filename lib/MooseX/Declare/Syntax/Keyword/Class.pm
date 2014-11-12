@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::Keyword::Class;
 # ABSTRACT: Class declarations
-$MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.39';
+$MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.40';
 use Moose;
 
 use namespace::clean -except => 'meta';
@@ -89,7 +89,7 @@ MooseX::Declare::Syntax::Keyword::Class - Class declarations
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 METHODS
 

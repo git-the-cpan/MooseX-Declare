@@ -1,6 +1,6 @@
 package MooseX::Declare::Context;
 # ABSTRACT: Per-keyword declaration context
-$MooseX::Declare::Context::VERSION = '0.39';
+$MooseX::Declare::Context::VERSION = '0.40';
 use Moose 0.90;
 use Moose::Util::TypeConstraints;
 use Carp qw/croak/;
@@ -15,7 +15,7 @@ use namespace::clean -except => 'meta';
 #pod delegate all default methods and extend it with some attributes and methods
 #pod of its own.
 #pod
-#pod A context object will be instanciated for every keyword that is handled by
+#pod A context object will be instantiated for every keyword that is handled by
 #pod L<MooseX::Declare>. If handlers want to communicate with other handlers (for
 #pod example handlers that will only be setup inside a namespace block) it must
 #pod do this via the generated code.
@@ -361,7 +361,7 @@ MooseX::Declare::Context - Per-keyword declaration context
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 
@@ -369,7 +369,7 @@ This is not a subclass of L<Devel::Declare::Context::Simple>, but it will
 delegate all default methods and extend it with some attributes and methods
 of its own.
 
-A context object will be instanciated for every keyword that is handled by
+A context object will be instantiated for every keyword that is handled by
 L<MooseX::Declare>. If handlers want to communicate with other handlers (for
 example handlers that will only be setup inside a namespace block) it must
 do this via the generated code.

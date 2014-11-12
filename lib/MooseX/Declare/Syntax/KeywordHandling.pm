@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::KeywordHandling;
 # ABSTRACT: Basic keyword functionality
-$MooseX::Declare::Syntax::KeywordHandling::VERSION = '0.39';
+$MooseX::Declare::Syntax::KeywordHandling::VERSION = '0.40';
 use Moose::Role;
 use Moose::Util::TypeConstraints;
 use Devel::Declare ();
@@ -161,7 +161,7 @@ MooseX::Declare::Syntax::KeywordHandling - Basic keyword functionality
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 

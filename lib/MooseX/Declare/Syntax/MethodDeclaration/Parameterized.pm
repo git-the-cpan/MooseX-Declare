@@ -1,6 +1,11 @@
-package MooseX::Declare::Syntax::MethodDeclaration::Parameterized;
-$MooseX::Declare::Syntax::MethodDeclaration::Parameterized::VERSION = '0.39';
+package # hide from PAUSE
+    MooseX::Declare::Syntax::MethodDeclaration::Parameterized;
+
 use Moose::Role;
+# we actually require MXRP 1.06 if versions 1.03,1.04,1.05 are installed
+# (which is where current_metaclass was removed from the API), but this was
+# only in the wild for a short time, so it's not worth creating a dynamic
+# prereq for.
 use MooseX::Role::Parameterized 0.12 ();
 use namespace::autoclean;
 

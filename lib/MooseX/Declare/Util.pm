@@ -3,7 +3,7 @@ use warnings;
 
 package MooseX::Declare::Util;
 # ABSTRACT: Common declarative utility functions
-$MooseX::Declare::Util::VERSION = '0.39';
+$MooseX::Declare::Util::VERSION = '0.40';
 use Sub::Exporter -setup => {
     exports => [qw(
         outer_stack_push
@@ -93,7 +93,7 @@ MooseX::Declare::Util - Common declarative utility functions
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 

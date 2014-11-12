@@ -48,7 +48,7 @@ class Quux is dirty {
     clean;
 }
 
-undef $SIG{__WARN__};
+local $SIG{__WARN__};
 
 ok(!Foo->can('croak'), '... Foo is clean');
 ok( Bar->can('croak'), '... Bar is dirty');

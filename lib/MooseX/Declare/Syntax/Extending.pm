@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::Extending;
 # ABSTRACT: Extending with superclasses
-$MooseX::Declare::Syntax::Extending::VERSION = '0.39';
+$MooseX::Declare::Syntax::Extending::VERSION = '0.40';
 use Moose::Role;
 
 use aliased 'MooseX::Declare::Context::Namespaced';
@@ -76,7 +76,7 @@ MooseX::Declare::Syntax::Extending - Extending with superclasses
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 

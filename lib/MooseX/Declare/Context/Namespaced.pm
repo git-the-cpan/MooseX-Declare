@@ -1,6 +1,6 @@
 package MooseX::Declare::Context::Namespaced;
 # ABSTRACT: Namespaced context
-$MooseX::Declare::Context::Namespaced::VERSION = '0.39';
+$MooseX::Declare::Context::Namespaced::VERSION = '0.40';
 use Moose::Role;
 
 use Carp                  qw( croak );
@@ -93,7 +93,7 @@ MooseX::Declare::Context::Namespaced - Namespaced context
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 

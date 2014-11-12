@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::Keyword::Method;
 # ABSTRACT: Handle method declarations
-$MooseX::Declare::Syntax::Keyword::Method::VERSION = '0.39';
+$MooseX::Declare::Syntax::Keyword::Method::VERSION = '0.40';
 use Moose;
 
 use namespace::clean -except => 'meta';
@@ -36,7 +36,7 @@ with 'MooseX::Declare::Syntax::MethodDeclaration';
 #pod   );
 #pod
 #pod This will mean that the signature C<(Str $foo)> will become
-#pod C<CodeRef $orig: Object $self, Str $foo> and and C<()> will become
+#pod C<CodeRef $orig: Object $self, Str $foo> and C<()> will become
 #pod C<CodeRef $orig: Object $self>.
 #pod
 #pod =cut
@@ -70,7 +70,7 @@ MooseX::Declare::Syntax::Keyword::Method - Handle method declarations
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 
@@ -96,7 +96,7 @@ method object via the C<< $metaclass->add_method >> method.
   );
 
 This will mean that the signature C<(Str $foo)> will become
-C<CodeRef $orig: Object $self, Str $foo> and and C<()> will become
+C<CodeRef $orig: Object $self, Str $foo> and C<()> will become
 C<CodeRef $orig: Object $self>.
 
 =head1 CONSUMES

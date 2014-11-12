@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::OptionHandling;
 # ABSTRACT: Option parser dispatching
-$MooseX::Declare::Syntax::OptionHandling::VERSION = '0.39';
+$MooseX::Declare::Syntax::OptionHandling::VERSION = '0.40';
 use Moose::Role;
 
 use Carp qw( croak );
@@ -96,7 +96,7 @@ MooseX::Declare::Syntax::OptionHandling - Option parser dispatching
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 

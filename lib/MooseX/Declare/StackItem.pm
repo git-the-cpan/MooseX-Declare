@@ -1,5 +1,6 @@
-package MooseX::Declare::StackItem;
-$MooseX::Declare::StackItem::VERSION = '0.39';
+package # hide from PAUSE
+    MooseX::Declare::StackItem;
+
 use Moose;
 
 use namespace::clean -except => 'meta';

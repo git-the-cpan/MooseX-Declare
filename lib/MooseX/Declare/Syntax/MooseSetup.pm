@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::MooseSetup;
 # ABSTRACT: Common Moose namespaces declarations
-$MooseX::Declare::Syntax::MooseSetup::VERSION = '0.39';
+$MooseX::Declare::Syntax::MooseSetup::VERSION = '0.40';
 use Moose::Role;
 
 use Moose::Util  qw( find_meta );
@@ -73,7 +73,7 @@ sub import_symbols_from { 'Moose' }
 #pod
 #pod   ArrayRef default_inner ()
 #pod
-#pod This will provide the following default inner-handlers to the namspace:
+#pod This will provide the following default inner-handlers to the namespace:
 #pod
 #pod =for :list
 #pod * method
@@ -198,7 +198,7 @@ MooseX::Declare::Syntax::MooseSetup - Common Moose namespaces declarations
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 
@@ -251,7 +251,7 @@ L<MooseX::Declare::Syntax::EmptyBlockIfMissing>
 
   ArrayRef default_inner ()
 
-This will provide the following default inner-handlers to the namspace:
+This will provide the following default inner-handlers to the namespace:
 
 =over 4
 

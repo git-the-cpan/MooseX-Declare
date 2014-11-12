@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::NamespaceHandling;
 # ABSTRACT: Handle namespaced blocks
-$MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.39';
+$MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.40';
 use Moose::Role;
 use Moose::Util qw( does_role );
 use MooseX::Declare::Util qw( outer_stack_peek );
@@ -68,9 +68,9 @@ requires qw(
 #pod to attach before/after/around the customizations for the namespace and the provided
 #pod options that are not attached to the namespace directly.
 #pod
-#pod While this distinction might seem superficial, we advise library developers faciliating
-#pod this role to follow the precendent. This ensures that when another component needs to
-#pod tie between the namspace and any additional customizations everythign will run in the
+#pod While this distinction might seem superficial, we advise library developers facilitating
+#pod this role to follow the precedent. This ensures that when another component needs to
+#pod tie between the namespace and any additional customizations everything will run in the
 #pod correct order. An example of this separation would be
 #pod
 #pod   class Foo is mutable ...
@@ -85,7 +85,7 @@ requires qw(
 #pod
 #pod   Object->handle_post_parsing (Object $context, Str $package, Str | Object $name)
 #pod
-#pod Allows for additional modifications to te namespace after everything else has been
+#pod Allows for additional modifications to the namespace after everything else has been
 #pod done. It will receive the context, the fully qualified package name, and either a
 #pod string with the name that was specified (might not be fully qualified, since
 #pod namespaces can be nested) or the anonymous metaclass instance if no name was
@@ -287,7 +287,7 @@ MooseX::Declare::Syntax::NamespaceHandling - Handle namespaced blocks
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 
@@ -353,9 +353,9 @@ These will be called (in this order) by the L</parse> method. They allow specifi
 to attach before/after/around the customizations for the namespace and the provided
 options that are not attached to the namespace directly.
 
-While this distinction might seem superficial, we advise library developers faciliating
-this role to follow the precendent. This ensures that when another component needs to
-tie between the namspace and any additional customizations everythign will run in the
+While this distinction might seem superficial, we advise library developers facilitating
+this role to follow the precedent. This ensures that when another component needs to
+tie between the namespace and any additional customizations everything will run in the
 correct order. An example of this separation would be
 
   class Foo is mutable ...
@@ -370,7 +370,7 @@ is an additional optional customization.
 
   Object->handle_post_parsing (Object $context, Str $package, Str | Object $name)
 
-Allows for additional modifications to te namespace after everything else has been
+Allows for additional modifications to the namespace after everything else has been
 done. It will receive the context, the fully qualified package name, and either a
 string with the name that was specified (might not be fully qualified, since
 namespaces can be nested) or the anonymous metaclass instance if no name was

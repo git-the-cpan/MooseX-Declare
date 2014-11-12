@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::EmptyBlockIfMissing;
 # ABSTRACT: Handle missing blocks after keywords
-$MooseX::Declare::Syntax::EmptyBlockIfMissing::VERSION = '0.39';
+$MooseX::Declare::Syntax::EmptyBlockIfMissing::VERSION = '0.40';
 use Moose::Role;
 
 use namespace::clean -except => 'meta';
@@ -8,7 +8,7 @@ use namespace::clean -except => 'meta';
 #pod =head1 DESCRIPTION
 #pod
 #pod The L<MooseX::Declare::Syntax::NamespaceHandling> role will require that the
-#pod consumer handles the case of non-existant blocks. This role will inject
+#pod consumer handles the case of non-existent blocks. This role will inject
 #pod an empty block with only the generated code parts in it.
 #pod
 #pod =method handle_missing_block
@@ -49,12 +49,12 @@ MooseX::Declare::Syntax::EmptyBlockIfMissing - Handle missing blocks after keywo
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 
 The L<MooseX::Declare::Syntax::NamespaceHandling> role will require that the
-consumer handles the case of non-existant blocks. This role will inject
+consumer handles the case of non-existent blocks. This role will inject
 an empty block with only the generated code parts in it.
 
 =head1 METHODS

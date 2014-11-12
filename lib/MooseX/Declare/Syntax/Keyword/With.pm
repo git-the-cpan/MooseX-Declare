@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::Keyword::With;
 # ABSTRACT: Apply roles within a class- or role-body
-$MooseX::Declare::Syntax::Keyword::With::VERSION = '0.39';
+$MooseX::Declare::Syntax::Keyword::With::VERSION = '0.40';
 use Moose;
 use Moose::Util;
 use MooseX::Declare::Util qw( outer_stack_peek );
@@ -20,11 +20,11 @@ use namespace::autoclean 0.09;
 #pod
 #pod The C<with> keyword allows you to apply roles to the local class or role. It
 #pod differs from the C<with>-option of the C<class> and C<role> keywords in that it
-#pod applies the roles immediately instead of defering application until the end of
+#pod applies the roles immediately instead of deferring application until the end of
 #pod the class- or role-definition.
 #pod
 #pod It also differs slightly from the C<with> provided by L<Moose|Moose> in that it
-#pod expands relative role names (C<::Foo>) according to the currenc C<namespace>.
+#pod expands relative role names (C<::Foo>) according to the current C<namespace>.
 #pod
 #pod =head1 CONSUMES
 #pod
@@ -83,7 +83,7 @@ MooseX::Declare::Syntax::Keyword::With - Apply roles within a class- or role-bod
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 SYNOPSIS
 
@@ -98,11 +98,11 @@ version 0.39
 
 The C<with> keyword allows you to apply roles to the local class or role. It
 differs from the C<with>-option of the C<class> and C<role> keywords in that it
-applies the roles immediately instead of defering application until the end of
+applies the roles immediately instead of deferring application until the end of
 the class- or role-definition.
 
 It also differs slightly from the C<with> provided by L<Moose|Moose> in that it
-expands relative role names (C<::Foo>) according to the currenc C<namespace>.
+expands relative role names (C<::Foo>) according to the current C<namespace>.
 
 =head1 METHODS
 

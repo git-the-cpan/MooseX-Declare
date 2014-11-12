@@ -1,5 +1,6 @@
-package MooseX::Declare::Context::WithOptions;
-$MooseX::Declare::Context::WithOptions::VERSION = '0.39';
+package # hide from PAUSE
+    MooseX::Declare::Context::WithOptions;
+
 use Moose::Role;
 use Carp qw/croak/;
 use MooseX::Types::Moose 0.20 qw/HashRef/;

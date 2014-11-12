@@ -2,10 +2,10 @@ use strict;
 use warnings;
 
 package MooseX::Declare;
-# git description: 0.38-13-g6688142
-$MooseX::Declare::VERSION = '0.39';
-# ABSTRACT: Declarative syntax for Moose
-# KEYWORDS: moose extension declaration syntax sugar method class
+# git description: 0.39-7-g12e9316
+$MooseX::Declare::VERSION = '0.40';
+# ABSTRACT: DEPRECATED: Declarative syntax for Moose
+# KEYWORDS: moose extension declaration syntax sugar method class deprecated
 
 use aliased 'MooseX::Declare::Syntax::Keyword::Class',      'ClassKeyword';
 use aliased 'MooseX::Declare::Syntax::Keyword::Role',       'RoleKeyword';
@@ -273,11 +273,11 @@ __END__
 
 =head1 NAME
 
-MooseX::Declare - Declarative syntax for Moose
+MooseX::Declare - DEPRECATED: Declarative syntax for Moose
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 SYNOPSIS
 
@@ -548,7 +548,7 @@ Florian Ragwitz <rafl@debian.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Karen Etheridge Ash Berlin Robert 'phaylon' Sedlacek Piers Cawley Nelo Onyiah Nick Perez Chas. J. Owens IV Yanick Champoux Stevan Little Devin Austin leedo Chris Prather Dave Rolsky Frank Wiegand Hans Dieter Pearcey Justin Hunter Matt Kraai Michele Beltrame Rafael Kitover Tomas Doran
+=for stopwords Karen Etheridge Ash Berlin Robert 'phaylon' Sedlacek Piers Cawley Nelo Onyiah Nick Perez Chas. J. Owens IV Yanick Champoux Devin Austin Stevan Little Tomas Doran leedo Chris Prather Dave Rolsky David Steinbrunner Frank Wiegand Hans Dieter Pearcey Justin Hunter Matt Kraai Michele Beltrame Oleg Kostyuk Rafael Kitover
 
 =over 4
 
@@ -586,11 +586,15 @@ Yanick Champoux <yanick@babyl.dyndns.org>
 
 =item *
 
+Devin Austin <dhoss@cpan.org>
+
+=item *
+
 Stevan Little <stevan.little@iinteractive.com>
 
 =item *
 
-Devin Austin <dhoss@cpan.org>
+Tomas Doran <bobtfish@bobtfish.net>
 
 =item *
 
@@ -603,6 +607,10 @@ Chris Prather <chris@prather.org>
 =item *
 
 Dave Rolsky <autarch@urth.org>
+
+=item *
+
+David Steinbrunner <dsteinbrunner@pobox.com>
 
 =item *
 
@@ -626,11 +634,11 @@ Michele Beltrame <arthas@cpan.org>
 
 =item *
 
-Rafael Kitover <rkitover@io.com>
+Oleg Kostyuk <cub.uanic@gmail.com>
 
 =item *
 
-Tomas Doran <bobtfish@bobtfish.net>
+Rafael Kitover <rkitover@io.com>
 
 =back
 

@@ -1,6 +1,6 @@
 package MooseX::Declare::Syntax::InnerSyntaxHandling;
 # ABSTRACT: Keywords inside blocks
-$MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.39';
+$MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.40';
 use Moose::Role;
 
 use MooseX::Declare::Util qw( outer_stack_push );
@@ -104,7 +104,7 @@ MooseX::Declare::Syntax::InnerSyntaxHandling - Keywords inside blocks
 
 =head1 VERSION
 
-version 0.39
+version 0.40
 
 =head1 DESCRIPTION
 
