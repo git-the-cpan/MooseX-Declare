@@ -1,9 +1,10 @@
 package MooseX::Declare::Syntax::EmptyBlockIfMissing;
 # ABSTRACT: Handle missing blocks after keywords
-$MooseX::Declare::Syntax::EmptyBlockIfMissing::VERSION = '0.40';
-use Moose::Role;
 
-use namespace::clean -except => 'meta';
+our $VERSION = '0.41';
+
+use Moose::Role;
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -49,7 +50,7 @@ MooseX::Declare::Syntax::EmptyBlockIfMissing - Handle missing blocks after keywo
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

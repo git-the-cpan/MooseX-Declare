@@ -1,13 +1,15 @@
 package MooseX::Declare::Context;
 # ABSTRACT: Per-keyword declaration context
-$MooseX::Declare::Context::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose 0.90;
-use Moose::Util::TypeConstraints;
+use Moose::Util::TypeConstraints qw(subtype as where);
 use Carp qw/croak/;
 
 use aliased 'Devel::Declare::Context::Simple', 'DDContext';
 
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -361,7 +363,7 @@ MooseX::Declare::Context - Per-keyword declaration context
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

@@ -1,11 +1,11 @@
 package MooseX::Declare::Syntax::RoleApplication;
 # ABSTRACT: Handle user specified roles
-$MooseX::Declare::Syntax::RoleApplication::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
-
 use aliased 'MooseX::Declare::Context::Namespaced';
-
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -76,7 +76,7 @@ MooseX::Declare::Syntax::RoleApplication - Handle user specified roles
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

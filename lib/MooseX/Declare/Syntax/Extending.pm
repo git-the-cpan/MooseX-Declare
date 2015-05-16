@@ -1,11 +1,11 @@
 package MooseX::Declare::Syntax::Extending;
 # ABSTRACT: Extending with superclasses
-$MooseX::Declare::Syntax::Extending::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
-
 use aliased 'MooseX::Declare::Context::Namespaced';
-
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -76,7 +76,7 @@ MooseX::Declare::Syntax::Extending - Extending with superclasses
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

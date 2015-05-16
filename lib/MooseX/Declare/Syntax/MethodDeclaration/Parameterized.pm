@@ -1,6 +1,8 @@
 package # hide from PAUSE
     MooseX::Declare::Syntax::MethodDeclaration::Parameterized;
 
+our $VERSION = '0.41';
+
 use Moose::Role;
 # we actually require MXRP 1.06 if versions 1.03,1.04,1.05 are installed
 # (which is where current_metaclass was removed from the API), but this was

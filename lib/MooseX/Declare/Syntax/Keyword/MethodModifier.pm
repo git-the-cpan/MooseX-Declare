@@ -1,11 +1,12 @@
 package MooseX::Declare::Syntax::Keyword::MethodModifier;
 # ABSTRACT: Handle method modifier declarations
-$MooseX::Declare::Syntax::Keyword::MethodModifier::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose;
 use Moose::Util;
-use Moose::Util::TypeConstraints;
-
-use namespace::clean -except => 'meta';
+use Moose::Util::TypeConstraints 'enum';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -79,7 +80,7 @@ MooseX::Declare::Syntax::Keyword::MethodModifier - Handle method modifier declar
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

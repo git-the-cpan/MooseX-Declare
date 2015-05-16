@@ -1,11 +1,13 @@
 package # hide from PAUSE
     MooseX::Declare::Context::WithOptions;
 
+our $VERSION = '0.41';
+
 use Moose::Role;
 use Carp qw/croak/;
 use MooseX::Types::Moose 0.20 qw/HashRef/;
 
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 has options => (
     is      => 'rw',

@@ -1,12 +1,13 @@
 package MooseX::Declare::Syntax::MethodDeclaration;
 # ABSTRACT: Handles method declarations
-$MooseX::Declare::Syntax::MethodDeclaration::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
 use MooseX::Method::Signatures::Meta::Method;
 use MooseX::Method::Signatures 0.36 ();
 use MooseX::Method::Signatures::Types qw/PrototypeInjections/;
-
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -107,7 +108,7 @@ MooseX::Declare::Syntax::MethodDeclaration - Handles method declarations
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

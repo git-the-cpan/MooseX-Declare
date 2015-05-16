@@ -1,11 +1,11 @@
 package MooseX::Declare::Syntax::OptionHandling;
 # ABSTRACT: Option parser dispatching
-$MooseX::Declare::Syntax::OptionHandling::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
-
 use Carp qw( croak );
-
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -96,7 +96,7 @@ MooseX::Declare::Syntax::OptionHandling - Option parser dispatching
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,8 @@
 package MooseX::Declare::Syntax::NamespaceHandling;
 # ABSTRACT: Handle namespaced blocks
-$MooseX::Declare::Syntax::NamespaceHandling::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
 use Moose::Util qw( does_role );
 use MooseX::Declare::Util qw( outer_stack_peek );
@@ -11,7 +13,7 @@ use aliased 'MooseX::Declare::Context::WithOptions';
 use aliased 'MooseX::Declare::Context::Parameterized';
 use aliased 'MooseX::Declare::StackItem';
 
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -287,7 +289,7 @@ MooseX::Declare::Syntax::NamespaceHandling - Handle namespaced blocks
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

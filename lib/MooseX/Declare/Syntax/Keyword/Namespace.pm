@@ -1,12 +1,12 @@
 package MooseX::Declare::Syntax::Keyword::Namespace;
 # ABSTRACT: Declare outer namespace
-$MooseX::Declare::Syntax::Keyword::Namespace::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose;
 use Carp qw( confess );
-
 use MooseX::Declare::Util qw( outer_stack_push outer_stack_peek );
-
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 SYNOPSIS
 #pod
@@ -93,7 +93,7 @@ MooseX::Declare::Syntax::Keyword::Namespace - Declare outer namespace
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 SYNOPSIS
 

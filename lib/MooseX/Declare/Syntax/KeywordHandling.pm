@@ -1,8 +1,10 @@
 package MooseX::Declare::Syntax::KeywordHandling;
 # ABSTRACT: Basic keyword functionality
-$MooseX::Declare::Syntax::KeywordHandling::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
-use Moose::Util::TypeConstraints;
+use Moose::Util::TypeConstraints qw(subtype as where);
 use Devel::Declare ();
 use Sub::Install qw( install_sub );
 use Moose::Meta::Class ();
@@ -11,7 +13,7 @@ use Module::Runtime 'use_module';
 
 use aliased 'MooseX::Declare::Context';
 
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -161,7 +163,7 @@ MooseX::Declare::Syntax::KeywordHandling - Basic keyword functionality
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

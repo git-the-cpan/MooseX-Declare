@@ -1,9 +1,10 @@
 package MooseX::Declare::Syntax::Keyword::Method;
 # ABSTRACT: Handle method declarations
-$MooseX::Declare::Syntax::Keyword::Method::VERSION = '0.40';
-use Moose;
 
-use namespace::clean -except => 'meta';
+our $VERSION = '0.41';
+
+use Moose;
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -70,7 +71,7 @@ MooseX::Declare::Syntax::Keyword::Method - Handle method declarations
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

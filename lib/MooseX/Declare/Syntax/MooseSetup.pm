@@ -1,6 +1,8 @@
 package MooseX::Declare::Syntax::MooseSetup;
 # ABSTRACT: Common Moose namespaces declarations
-$MooseX::Declare::Syntax::MooseSetup::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
 
 use Moose::Util  qw( find_meta );
@@ -11,7 +13,7 @@ use aliased 'MooseX::Declare::Syntax::Keyword::Method';
 use aliased 'MooseX::Declare::Syntax::Keyword::With', 'WithKeyword';
 use aliased 'MooseX::Declare::Syntax::Keyword::Clean', 'CleanKeyword';
 
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -198,7 +200,7 @@ MooseX::Declare::Syntax::MooseSetup - Common Moose namespaces declarations
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

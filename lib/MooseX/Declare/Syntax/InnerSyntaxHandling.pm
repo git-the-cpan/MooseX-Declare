@@ -1,11 +1,11 @@
 package MooseX::Declare::Syntax::InnerSyntaxHandling;
 # ABSTRACT: Keywords inside blocks
-$MooseX::Declare::Syntax::InnerSyntaxHandling::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose::Role;
-
 use MooseX::Declare::Util qw( outer_stack_push );
-
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -104,7 +104,7 @@ MooseX::Declare::Syntax::InnerSyntaxHandling - Keywords inside blocks
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 

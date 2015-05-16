@@ -1,11 +1,11 @@
 use strict;
 use warnings;
 
-package MooseX::Declare;
-# git description: 0.39-7-g12e9316
-$MooseX::Declare::VERSION = '0.40';
-# ABSTRACT: DEPRECATED: Declarative syntax for Moose
+package MooseX::Declare; # git description: 0.40-10-g4915e87
+# ABSTRACT: (DEPRECATED) Declarative syntax for Moose
 # KEYWORDS: moose extension declaration syntax sugar method class deprecated
+
+our $VERSION = '0.41';
 
 use aliased 'MooseX::Declare::Syntax::Keyword::Class',      'ClassKeyword';
 use aliased 'MooseX::Declare::Syntax::Keyword::Role',       'RoleKeyword';
@@ -273,11 +273,11 @@ __END__
 
 =head1 NAME
 
-MooseX::Declare - DEPRECATED: Declarative syntax for Moose
+MooseX::Declare - (DEPRECATED) Declarative syntax for Moose
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 SYNOPSIS
 
@@ -548,7 +548,7 @@ Florian Ragwitz <rafl@debian.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Karen Etheridge Ash Berlin Robert 'phaylon' Sedlacek Piers Cawley Nelo Onyiah Nick Perez Chas. J. Owens IV Yanick Champoux Devin Austin Stevan Little Tomas Doran leedo Chris Prather Dave Rolsky David Steinbrunner Frank Wiegand Hans Dieter Pearcey Justin Hunter Matt Kraai Michele Beltrame Oleg Kostyuk Rafael Kitover
+=for stopwords Karen Etheridge Piers Cawley Robert 'phaylon' Sedlacek Ash Berlin Nick Perez Nelo Onyiah Chas. J. Owens IV leedo Michele Beltrame Frank Wiegand David Steinbrunner Oleg Kostyuk Dave Rolsky Rafael Kitover Chris Prather Stevan Little Tomas Doran Yanick Champoux Justin Hunter
 
 =over 4
 
@@ -558,7 +558,7 @@ Karen Etheridge <ether@cpan.org>
 
 =item *
 
-Ash Berlin <ash_github@firemirror.com>
+Piers Cawley <pdcawley@bofh.org.uk>
 
 =item *
 
@@ -566,11 +566,7 @@ Robert 'phaylon' Sedlacek <rs@474.at>
 
 =item *
 
-Piers Cawley <pdcawley@bofh.org.uk>
-
-=item *
-
-Nelo Onyiah <nelo.onyiah@gmail.com>
+Ash Berlin <ash_github@firemirror.com>
 
 =item *
 
@@ -578,15 +574,43 @@ Nick Perez <nperez@cpan.org>
 
 =item *
 
+Nelo Onyiah <nelo.onyiah@gmail.com>
+
+=item *
+
 Chas. J. Owens IV <chas.owens@gmail.com>
 
 =item *
 
-Yanick Champoux <yanick@babyl.dyndns.org>
+leedo <lee@laylward.com>
 
 =item *
 
-Devin Austin <dhoss@cpan.org>
+Michele Beltrame <arthas@cpan.org>
+
+=item *
+
+Frank Wiegand <fwie@cpan.org>
+
+=item *
+
+David Steinbrunner <dsteinbrunner@pobox.com>
+
+=item *
+
+Oleg Kostyuk <cub.uanic@gmail.com>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+Rafael Kitover <rkitover@io.com>
+
+=item *
+
+Chris Prather <chris@prather.org>
 
 =item *
 
@@ -598,47 +622,11 @@ Tomas Doran <bobtfish@bobtfish.net>
 
 =item *
 
-leedo <lee@laylward.com>
-
-=item *
-
-Chris Prather <chris@prather.org>
-
-=item *
-
-Dave Rolsky <autarch@urth.org>
-
-=item *
-
-David Steinbrunner <dsteinbrunner@pobox.com>
-
-=item *
-
-Frank Wiegand <fwie@cpan.org>
-
-=item *
-
-Hans Dieter Pearcey <hdp@cpan.org>
+Yanick Champoux <yanick@babyl.dyndns.org>
 
 =item *
 
 Justin Hunter <justin.d.hunter@gmail.com>
-
-=item *
-
-Matt Kraai <kraai@ftbfs.org>
-
-=item *
-
-Michele Beltrame <arthas@cpan.org>
-
-=item *
-
-Oleg Kostyuk <cub.uanic@gmail.com>
-
-=item *
-
-Rafael Kitover <rkitover@io.com>
 
 =back
 

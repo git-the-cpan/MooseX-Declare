@@ -1,6 +1,8 @@
 package MooseX::Declare::Syntax::Keyword::Role;
 # ABSTRACT: Role declarations
-$MooseX::Declare::Syntax::Keyword::Role::VERSION = '0.40';
+
+our $VERSION = '0.41';
+
 use Moose;
 use Moose::Util qw(does_role find_meta);
 use aliased 'Parse::Method::Signatures' => 'PMS';
@@ -9,7 +11,7 @@ use aliased 'Parse::Method::Signatures::Param::Placeholder';
 use aliased 'MooseX::Declare::Context::Parameterized', 'ParameterizedCtx';
 use aliased 'MooseX::Declare::Syntax::MethodDeclaration::Parameterized', 'ParameterizedMethod';
 
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 CONSUMES
 #pod
@@ -173,7 +175,7 @@ MooseX::Declare::Syntax::Keyword::Role - Role declarations
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 METHODS
 

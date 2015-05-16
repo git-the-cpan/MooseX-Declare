@@ -1,9 +1,10 @@
 package MooseX::Declare::Syntax::Keyword::Class;
 # ABSTRACT: Class declarations
-$MooseX::Declare::Syntax::Keyword::Class::VERSION = '0.40';
-use Moose;
 
-use namespace::clean -except => 'meta';
+our $VERSION = '0.41';
+
+use Moose;
+use namespace::autoclean;
 
 #pod =head1 CONSUMES
 #pod
@@ -89,7 +90,7 @@ MooseX::Declare::Syntax::Keyword::Class - Class declarations
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 METHODS
 

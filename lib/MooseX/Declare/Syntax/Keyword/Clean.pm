@@ -1,12 +1,12 @@
 package MooseX::Declare::Syntax::Keyword::Clean;
 # ABSTRACT: Explicit namespace cleanups
-$MooseX::Declare::Syntax::Keyword::Clean::VERSION = '0.40';
-use Moose;
 
+our $VERSION = '0.41';
+
+use Moose;
 use constant NAMESPACING_ROLE => 'MooseX::Declare::Syntax::NamespaceHandling';
 use Carp qw( cluck );
-
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 #pod =head1 DESCRIPTION
 #pod
@@ -82,7 +82,7 @@ MooseX::Declare::Syntax::Keyword::Clean - Explicit namespace cleanups
 
 =head1 VERSION
 
-version 0.40
+version 0.41
 
 =head1 DESCRIPTION
 
