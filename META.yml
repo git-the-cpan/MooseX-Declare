@@ -16,7 +16,7 @@ configure_requires:
   Module::Build::Tiny: '0.039'
   perl: '5.006'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.036, CPAN::Meta::Converter version 2.150003'
+generated_by: 'Dist::Zilla version 5.036, CPAN::Meta::Converter version 2.150001'
 keywords:
   - moose
   - extension
@@ -38,72 +38,71 @@ no_index:
 provides:
   MooseX::Declare:
     file: lib/MooseX/Declare.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Context:
     file: lib/MooseX/Declare/Context.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Context::Namespaced:
     file: lib/MooseX/Declare/Context/Namespaced.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Context::Parameterized:
     file: lib/MooseX/Declare/Context/Parameterized.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::EmptyBlockIfMissing:
     file: lib/MooseX/Declare/Syntax/EmptyBlockIfMissing.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Extending:
     file: lib/MooseX/Declare/Syntax/Extending.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::InnerSyntaxHandling:
     file: lib/MooseX/Declare/Syntax/InnerSyntaxHandling.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Keyword::Class:
     file: lib/MooseX/Declare/Syntax/Keyword/Class.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Keyword::Clean:
     file: lib/MooseX/Declare/Syntax/Keyword/Clean.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Keyword::Method:
     file: lib/MooseX/Declare/Syntax/Keyword/Method.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Keyword::MethodModifier:
     file: lib/MooseX/Declare/Syntax/Keyword/MethodModifier.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Keyword::Namespace:
     file: lib/MooseX/Declare/Syntax/Keyword/Namespace.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Keyword::Role:
     file: lib/MooseX/Declare/Syntax/Keyword/Role.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::Keyword::With:
     file: lib/MooseX/Declare/Syntax/Keyword/With.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::KeywordHandling:
     file: lib/MooseX/Declare/Syntax/KeywordHandling.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::MethodDeclaration:
     file: lib/MooseX/Declare/Syntax/MethodDeclaration.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::MooseSetup:
     file: lib/MooseX/Declare/Syntax/MooseSetup.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::NamespaceHandling:
     file: lib/MooseX/Declare/Syntax/NamespaceHandling.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::OptionHandling:
     file: lib/MooseX/Declare/Syntax/OptionHandling.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Syntax::RoleApplication:
     file: lib/MooseX/Declare/Syntax/RoleApplication.pm
-    version: '0.41'
+    version: '0.42'
   MooseX::Declare::Util:
     file: lib/MooseX/Declare/Util.pm
-    version: '0.41'
+    version: '0.42'
 requires:
   Carp: '0'
   Devel::Declare: '0.005011'
   Devel::Declare::Context::Simple: '0'
-  List::MoreUtils: '0'
   Module::Runtime: '0'
   Moose: '0.90'
   Moose::Meta::Class: '0'
@@ -121,7 +120,7 @@ requires:
   Sub::Install: '0'
   aliased: '0'
   constant: '0'
-  namespace::autoclean: '0.09'
+  namespace::autoclean: '0.16'
   namespace::clean: '0.11'
   overload: '0'
   perl: '5.006'
@@ -133,10 +132,10 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=MooseX-Declare
   homepage: https://github.com/moose/MooseX-Declare
   repository: https://github.com/moose/MooseX-Declare.git
-version: '0.41'
+version: '0.42'
 x_Dist_Zilla:
   perl:
-    version: '5.021011'
+    version: '5.022000'
   plugins:
     -
       class: Dist::Zilla::Plugin::Prereqs
@@ -154,7 +153,7 @@ x_Dist_Zilla:
             version_regexp: ^v([\d._]+)(-TRIAL)?$
           fallback_version_provider: Git::NextVersion
       name: '@Author::ETHER/RewriteVersion::Transitional'
-      version: '0.004'
+      version: '0.005'
     -
       class: Dist::Zilla::Plugin::PromptIfStale
       config:
@@ -166,7 +165,7 @@ x_Dist_Zilla:
           phase: build
           skip: []
       name: '@Author::ETHER/stale modules, build'
-      version: '0.042'
+      version: '0.044'
     -
       class: Dist::Zilla::Plugin::PromptIfStale
       config:
@@ -177,15 +176,7 @@ x_Dist_Zilla:
           phase: release
           skip: []
       name: '@Author::ETHER/stale modules, release'
-      version: '0.042'
-    -
-      class: Dist::Zilla::Plugin::ExecDir
-      name: '@Author::ETHER/ExecDir'
-      version: '5.036'
-    -
-      class: Dist::Zilla::Plugin::ShareDir
-      name: '@Author::ETHER/ShareDir'
-      version: '5.036'
+      version: '0.044'
     -
       class: Dist::Zilla::Plugin::FileFinder::ByName
       name: '@Author::ETHER/Examples'
@@ -212,7 +203,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::GatherDir:
           include_untracked: '0'
       name: '@Author::ETHER/Git::GatherDir'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::MetaYAML
       name: '@Author::ETHER/MetaYAML'
@@ -265,7 +256,7 @@ x_Dist_Zilla:
             - '@Author::ETHER/Examples'
           skips: []
       name: '@Author::ETHER/Test::Compile'
-      version: '2.052'
+      version: '2.053'
     -
       class: Dist::Zilla::Plugin::Test::NoTabs
       config:
@@ -278,7 +269,7 @@ x_Dist_Zilla:
             - ':TestFiles'
             - '@Author::ETHER/ExtraTestFiles'
       name: '@Author::ETHER/Test::NoTabs'
-      version: '0.14'
+      version: '0.15'
     -
       class: Dist::Zilla::Plugin::Test::EOL
       config:
@@ -287,7 +278,9 @@ x_Dist_Zilla:
           finder:
             - ':InstallModules'
             - ':ExecFiles'
+            - '@Author::ETHER/Examples'
             - ':TestFiles'
+            - '@Author::ETHER/ExtraTestFiles'
           trailing_whitespace: '1'
       name: '@Author::ETHER/Test::EOL'
       version: '0.18'
@@ -315,7 +308,7 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Test::Kwalitee
       config:
         Dist::Zilla::Plugin::Test::Kwalitee:
-          filename: xt/release/kwalitee.t
+          filename: xt/author/kwalitee.t
           skiptest: []
       name: '@Author::ETHER/Test::Kwalitee'
       version: '2.11'
@@ -586,10 +579,11 @@ x_Dist_Zilla:
       config:
         Dist::Zilla::Plugin::Run::Role::Runner:
           fatal_errors: 1
+          quiet: 1
           run:
             - "bash -c \"test -e .ackrc && grep -q -- '--ignore-dir=.latest' .ackrc || echo '--ignore-dir=.latest' >> .ackrc; if [[ `dirname %d` != .build ]]; then test -e .ackrc && grep -q -- '--ignore-dir=%d' .ackrc || echo '--ignore-dir=%d' >> .ackrc; fi\""
       name: '@Author::ETHER/.ackrc'
-      version: '0.037'
+      version: '0.038'
     -
       class: Dist::Zilla::Plugin::Run::AfterBuild
       config:
@@ -597,8 +591,9 @@ x_Dist_Zilla:
           eval:
             - "if ('%d' =~ /^%n-[.[:xdigit:]]+$/) { unlink '.latest'; symlink '%d', '.latest'; }"
           fatal_errors: 1
+          quiet: 1
       name: '@Author::ETHER/.latest'
-      version: '0.037'
+      version: '0.038'
     -
       class: Dist::Zilla::Plugin::CheckStrictVersion
       name: '@Author::ETHER/CheckStrictVersion'
@@ -615,7 +610,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Author::ETHER/initial check'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts
       config:
@@ -637,7 +632,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::CheckPrereqsIndexed
       name: '@Author::ETHER/CheckPrereqsIndexed'
-      version: '0.015'
+      version: '0.016'
     -
       class: Dist::Zilla::Plugin::TestRelease
       name: '@Author::ETHER/TestRelease'
@@ -654,7 +649,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Author::ETHER/after tests'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::CheckIssues
       name: '@Author::ETHER/CheckIssues'
@@ -684,30 +679,30 @@ x_Dist_Zilla:
           time_zone: local
         Dist::Zilla::Role::Git::DirtyFiles:
           allow_dirty:
-            - README.pod
-            - LICENSE
-            - CONTRIBUTING
             - Changes
+            - README.pod
+            - CONTRIBUTING
+            - LICENSE
           allow_dirty_match: []
           changelog: Changes
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Author::ETHER/release snapshot'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Git::Tag
       config:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: v0.41
+          tag: v0.42
           tag_format: v%v
           tag_message: v%v%t
           time_zone: local
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Author::ETHER/Git::Tag'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::GitHub::Update
       name: '@Author::ETHER/GitHub::Update'
@@ -717,7 +712,7 @@ x_Dist_Zilla:
       config:
         Dist::Zilla::Plugin::BumpVersionAfterRelease::Transitional: {}
       name: '@Author::ETHER/BumpVersionAfterRelease::Transitional'
-      version: '0.004'
+      version: '0.005'
     -
       class: Dist::Zilla::Plugin::NextRelease
       name: '@Author::ETHER/NextRelease'
@@ -727,7 +722,7 @@ x_Dist_Zilla:
       config:
         Dist::Zilla::Plugin::Git::Commit:
           add_files_in: []
-          commit_msg: 'increment $VERSION after release'
+          commit_msg: 'increment $VERSION after %v release'
           time_zone: local
         Dist::Zilla::Role::Git::DirtyFiles:
           allow_dirty:
@@ -738,7 +733,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Author::ETHER/post-release commit'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Git::Push
       config:
@@ -749,16 +744,17 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Author::ETHER/Git::Push'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Run::AfterRelease
       config:
         Dist::Zilla::Plugin::Run::Role::Runner:
           fatal_errors: 0
+          quiet: 0
           run:
             - REDACTED
       name: '@Author::ETHER/install release'
-      version: '0.037'
+      version: '0.038'
     -
       class: Dist::Zilla::Plugin::Run::AfterRelease
       config:
@@ -766,8 +762,9 @@ x_Dist_Zilla:
           eval:
             - 'print "release complete!\xa"'
           fatal_errors: 1
+          quiet: 1
       name: '@Author::ETHER/release complete'
-      version: '0.037'
+      version: '0.038'
     -
       class: Dist::Zilla::Plugin::ConfirmRelease
       name: '@Author::ETHER/ConfirmRelease'

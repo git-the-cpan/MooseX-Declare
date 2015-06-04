@@ -1,7 +1,7 @@
 package # hide from PAUSE
     MooseX::Declare::Syntax::MethodDeclaration::Parameterized;
 
-our $VERSION = '0.41';
+our $VERSION = '0.42';
 
 use Moose::Role;
 # we actually require MXRP 1.06 if versions 1.03,1.04,1.05 are installed

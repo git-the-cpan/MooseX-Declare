@@ -1,19 +1,18 @@
 package MooseX::Declare::Syntax::KeywordHandling;
 # ABSTRACT: Basic keyword functionality
 
-our $VERSION = '0.41';
+our $VERSION = '0.42';
 
 use Moose::Role;
 use Moose::Util::TypeConstraints qw(subtype as where);
 use Devel::Declare ();
 use Sub::Install qw( install_sub );
 use Moose::Meta::Class ();
-use List::MoreUtils qw( uniq );
 use Module::Runtime 'use_module';
 
 use aliased 'MooseX::Declare::Context';
 
-use namespace::autoclean;
+use namespace::autoclean -also => ['_uniq'];
 
 #pod =head1 DESCRIPTION
 #pod
@@ -118,7 +117,7 @@ sub parse_declaration {
     use_module $ctx_class;
 
     # do we have traits?
-    if (my @ctx_traits = uniq $self->context_traits) {
+    if (my @ctx_traits = _uniq($self->context_traits)) {
 
         use_module $_
             for @ctx_traits;
@@ -140,6 +139,8 @@ sub parse_declaration {
     # parse with current context
     return $self->parse($ctx);
 }
+
+sub _uniq { keys %{ +{ map { $_ => undef } @_ } } }
 
 #pod =head1 SEE ALSO
 #pod
@@ -163,7 +164,7 @@ MooseX::Declare::Syntax::KeywordHandling - Basic keyword functionality
 
 =head1 VERSION
 
-version 0.41
+version 0.42
 
 =head1 DESCRIPTION
 

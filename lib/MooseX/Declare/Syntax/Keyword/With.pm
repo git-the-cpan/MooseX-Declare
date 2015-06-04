@@ -1,13 +1,13 @@
 package MooseX::Declare::Syntax::Keyword::With;
 # ABSTRACT: Apply roles within a class- or role-body
 
-our $VERSION = '0.41';
+our $VERSION = '0.42';
 
 use Moose;
 use Moose::Util;
 use MooseX::Declare::Util qw( outer_stack_peek );
 use aliased 'MooseX::Declare::Context::Namespaced';
-use namespace::autoclean 0.09;
+use namespace::autoclean;
 
 #pod =head1 SYNOPSIS
 #pod
@@ -85,7 +85,7 @@ MooseX::Declare::Syntax::Keyword::With - Apply roles within a class- or role-bod
 
 =head1 VERSION
 
-version 0.41
+version 0.42
 
 =head1 SYNOPSIS
 

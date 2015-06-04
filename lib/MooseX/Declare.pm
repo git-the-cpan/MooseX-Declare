@@ -1,11 +1,11 @@
 use strict;
 use warnings;
 
-package MooseX::Declare; # git description: 0.40-10-g4915e87
+package MooseX::Declare; # git description: v0.41-3-g227ac26
 # ABSTRACT: (DEPRECATED) Declarative syntax for Moose
 # KEYWORDS: moose extension declaration syntax sugar method class deprecated
 
-our $VERSION = '0.41';
+our $VERSION = '0.42';
 
 use aliased 'MooseX::Declare::Syntax::Keyword::Class',      'ClassKeyword';
 use aliased 'MooseX::Declare::Syntax::Keyword::Role',       'RoleKeyword';
@@ -277,7 +277,7 @@ MooseX::Declare - (DEPRECATED) Declarative syntax for Moose
 
 =head1 VERSION
 
-version 0.41
+version 0.42
 
 =head1 SYNOPSIS
 

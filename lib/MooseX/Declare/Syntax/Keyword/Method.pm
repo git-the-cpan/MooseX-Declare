@@ -1,7 +1,7 @@
 package MooseX::Declare::Syntax::Keyword::Method;
 # ABSTRACT: Handle method declarations
 
-our $VERSION = '0.41';
+our $VERSION = '0.42';
 
 use Moose;
 use namespace::autoclean;
@@ -71,7 +71,7 @@ MooseX::Declare::Syntax::Keyword::Method - Handle method declarations
 
 =head1 VERSION
 
-version 0.41
+version 0.42
 
 =head1 DESCRIPTION
 
