@@ -1,7 +1,7 @@
 package MooseX::Declare::Context::Parameterized;
 # ABSTRACT: context for parsing optionally parameterized statements
 
-our $VERSION = '0.42';
+our $VERSION = '0.43';
 
 use Moose::Role;
 use MooseX::Types::Moose qw/Str HashRef/;
@@ -94,7 +94,7 @@ MooseX::Declare::Context::Parameterized - context for parsing optionally paramet
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 DESCRIPTION
 

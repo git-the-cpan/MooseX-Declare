@@ -17,6 +17,8 @@ eval q[
     }
 ];
 
+diag 'got exception: ', explain $@;
+
 pass('should not crash');
 
 done_testing;

@@ -1,7 +1,7 @@
 package MooseX::Declare::Syntax::KeywordHandling;
 # ABSTRACT: Basic keyword functionality
 
-our $VERSION = '0.42';
+our $VERSION = '0.43';
 
 use Moose::Role;
 use Moose::Util::TypeConstraints qw(subtype as where);
@@ -164,7 +164,7 @@ MooseX::Declare::Syntax::KeywordHandling - Basic keyword functionality
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 DESCRIPTION
 

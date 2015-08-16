@@ -1,7 +1,7 @@
 package MooseX::Declare::Syntax::EmptyBlockIfMissing;
 # ABSTRACT: Handle missing blocks after keywords
 
-our $VERSION = '0.42';
+our $VERSION = '0.43';
 
 use Moose::Role;
 use namespace::autoclean;
@@ -50,7 +50,7 @@ MooseX::Declare::Syntax::EmptyBlockIfMissing - Handle missing blocks after keywo
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 DESCRIPTION
 

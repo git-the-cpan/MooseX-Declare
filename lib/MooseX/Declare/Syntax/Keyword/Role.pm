@@ -1,7 +1,7 @@
 package MooseX::Declare::Syntax::Keyword::Role;
 # ABSTRACT: Role declarations
 
-our $VERSION = '0.42';
+our $VERSION = '0.43';
 
 use Moose;
 use Moose::Util qw(does_role find_meta);
@@ -175,7 +175,7 @@ MooseX::Declare::Syntax::Keyword::Role - Role declarations
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 METHODS
 

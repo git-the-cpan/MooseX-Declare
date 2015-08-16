@@ -1,5 +1,8 @@
 Revision history for MooseX-Declare
 
+0.43      2015-08-16 03:29:28Z
+  - add some diagnostics to a test that is failing occasionally
+
 0.42      2015-06-04 06:17:43Z
   - eliminate remaining uses of List::MoreUtils
   - increase required version of namespace::autoclean to 0.16 to avoid test

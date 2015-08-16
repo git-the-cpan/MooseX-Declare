@@ -1,7 +1,7 @@
 package MooseX::Declare::Syntax::Keyword::Clean;
 # ABSTRACT: Explicit namespace cleanups
 
-our $VERSION = '0.42';
+our $VERSION = '0.43';
 
 use Moose;
 use constant NAMESPACING_ROLE => 'MooseX::Declare::Syntax::NamespaceHandling';
@@ -82,7 +82,7 @@ MooseX::Declare::Syntax::Keyword::Clean - Explicit namespace cleanups
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 DESCRIPTION
 

@@ -1,7 +1,7 @@
 package MooseX::Declare::Syntax::MethodDeclaration;
 # ABSTRACT: Handles method declarations
 
-our $VERSION = '0.42';
+our $VERSION = '0.43';
 
 use Moose::Role;
 use MooseX::Method::Signatures::Meta::Method;
@@ -108,7 +108,7 @@ MooseX::Declare::Syntax::MethodDeclaration - Handles method declarations
 
 =head1 VERSION
 
-version 0.42
+version 0.43
 
 =head1 DESCRIPTION
 
